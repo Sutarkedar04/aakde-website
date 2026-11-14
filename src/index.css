@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --base: #0a0a0b;        /* main background */
+  --main: #f4f4f5;        /* primary text */
+  --soft: #a1a1aa;        /* secondary text */
+  --line: rgb(255 255 255 / 0.12);
+  --accent: #FFFDD0;      /* the one accent colour */
+  --accent-ink: #04201c;  /* text on accent buttons */
+  --highlight: #e9b44c;   /* used sparingly (Devanagari, focus ring) */
+  --danger: #f87171;
+}
+[data-theme="light"] {
+  color-scheme: light;
+  --base: #ffffff;
+  --main: #0a0a0b;
+  --soft: #52525b;
+  --line: rgb(10 10 11 / 0.12);
+  --accent: #0f766e;
+  --accent-ink: #ffffff;
+  --highlight: #b45309;
+  --danger: #b91c1c;
+}
+
+@theme inline {
+  --color-base: var(--base);
+  --color-main: var(--main);
+  --color-soft: var(--soft);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-highlight: var(--highlight);
+  --color-danger: var(--danger);
+}
+@theme {
+  --font-display: "Sora", "Noto Sans Devanagari", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-dev: "Noto Sans Devanagari", sans-serif;
+}
+
+
+@theme static {
+  --color-paper: #faf9f6;    /* light sections */
+  --color-haze: #eef1f6;
+  --color-mist: #c9d6e8;
+  --color-night: #02050a;    /* top of the navy gradient */
+  --color-steel: #46566e;    /* bottom of the navy gradient */
+  --color-actual: #5eead4;   /* chart: actual line */
+  --color-forecast: #fbbf24; /* chart: forecast line */
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { font-family: var(--font-body); background: var(--base); color: var(--main); }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; }
+  :focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px; }
+}
+
+@utility wrap { width: min(1120px, calc(100% - 3rem)); margin-inline: auto; }
+
+/* Section backgrounds (same gradients as before, sRGB) */
+@utility bg-navy       { background-image: linear-gradient(180deg, var(--color-night) 0%, #050d1f 25%, #0b2146 55%, #2d4d82 82%, var(--color-steel) 100%); }
+@utility bg-dawn       { background-image: linear-gradient(180deg, var(--color-mist) 0%, var(--color-haze) 45%, var(--color-paper) 100%); }
+@utility bg-paper-haze { background-image: linear-gradient(180deg, var(--color-paper) 0%, var(--color-haze) 100%); }
+@utility bg-paper-mist { background-image: linear-gradient(180deg, var(--color-paper) 0%, var(--color-mist) 100%); }
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-display text-sm font-semibold transition hover:-translate-y-0.5; }
+  .btn-primary { @apply bg-accent text-accent-ink hover:opacity-90; }
+  .btn-ghost { @apply border border-main/40 text-main hover:bg-main/10; }
+  .h2 { @apply mb-12 text-3xl font-semibold tracking-tight md:text-5xl; }
+  .badge { @apply inline-block bg-main px-2 py-1 font-display text-[11px] text-accent-ink; }
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition: none !important; scroll-behavior: auto !important; }
+}
