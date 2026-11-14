@@ -5,6 +5,15 @@ import HeroChart from './HeroChart'
 import { DASH, DIGITS } from './ui'
 import { heroStats } from '../data'
 
+/*
+  How the effect works (same idea as the reference site):
+  - The dark hero is ONE full-size layer. Scrolling animates its clip-path from "show everything"
+    to a small centered card. Nothing is scaled; the layer is simply cropped from all sides.
+  - Inside that same layer, a dashboard card sits exactly where the card ends up, hidden at first.
+    When the crop reaches the card size, the hero text has faded out and the dashboard fades in.
+  - The light background, dotted grid lines, headline and pillars sit behind the layer and
+    fade in around the card.
+*/
 const STAGE_H = 'h-[calc(100svh-72px)] min-h-[560px]'
 
 const pillars = [
@@ -13,7 +22,7 @@ const pillars = [
   { n: '03', title: 'Education and development', text: 'Training for students and professionals in analytics and finance.' },
 ]
 
-const hide = 'invisible opacity-0' 
+const hide = 'invisible opacity-0' // GSAP's autoAlpha reveals these
 
 export default function Hero() {
   const stage = useRef(null)
@@ -32,6 +41,7 @@ export default function Hero() {
       },
       (ctx) => {
         const { desktop } = ctx.conditions
+        // Final card rectangle (must match the classes on the dashboard wrapper below)
         const card = desktop ? 'inset(6% 34% 6% 34% round 24px)' : 'inset(22% 6% 6% 6% round 20px)'
 
         gsap.set(layer.current, { clipPath: 'inset(0% 0% 0% 0% round 0px)' })
@@ -61,7 +71,7 @@ export default function Hero() {
           .to(q('.c-now'), { opacity: 1, duration: 0.1 }, 1.85)
       }
     )
-    
+    // Reduced motion: nothing is pinned or cropped. The hero simply stays as a normal section.
 
     return () => mm.revert()
   }, [])
@@ -122,6 +132,9 @@ export default function Hero() {
           {/* Hero text */}
           <div ref={copy} className={`wrap relative flex flex-col ${STAGE_H}`}>
             <div className="flex flex-1 flex-col justify-center">
+              <p className="mb-5 animate-[rise_.8s_both] font-display text-lg font-semibold text-accent">
+                AAKDE <span className="ml-1 font-dev text-highlight">आकडे</span>
+              </p>
               <h1 className="max-w-4xl animate-[rise_.8s_.1s_both] text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl lg:text-8xl">
                 Intelligence for better decisions
               </h1>

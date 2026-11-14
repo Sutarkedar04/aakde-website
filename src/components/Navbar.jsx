@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { navLinks } from '../data'
+import logo from '../assets/aakde_logo.png'
 
 function useActiveSection(ids) {
   const [active, setActive] = useState(ids[0])
@@ -28,9 +29,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-base/85 backdrop-blur-md">
       <div className="wrap flex h-18 items-center justify-between gap-6">
-        <a href="#home" aria-label="AAKDE home" className="font-display text-xl font-bold tracking-wide text-main">
-          AAKDE<span className="ml-2 font-dev text-lg text-highlight">आकडे</span>
-        </a>
+       <a href="#home" aria-label="AAKDE home" className="shrink-0">
+  <img src={logo} alt="AAKDE" className="h-10 w-auto" />
+</a>
 
         <nav
           aria-label="Main"
