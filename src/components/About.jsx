@@ -15,7 +15,7 @@ export default function About() {
         <div
           aria-hidden="true"
           data-speed="-0.08"
-          className="bg-linear-to-br from-accent to-highlight bg-clip-text font-dev text-[clamp(6rem,16vw,12rem)] font-bold leading-none text-transparent will-change-transform"
+          className="bg-linear-to-br from-white to-accent bg-clip-text font-dev text-[clamp(6rem,16vw,12rem)] font-bold leading-none text-transparent will-change-transform"
         >
           आकडे
         </div>

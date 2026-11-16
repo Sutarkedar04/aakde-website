@@ -35,7 +35,7 @@ export default function HeroChart() {
       />
       <polyline points={future.join(' ')} className="c-forecast fill-none stroke-forecast stroke-[2.5] [stroke-dasharray:6_6] opacity-0" />
       {actual.map((v, i) => (
-        <circle key={i} cx={x(i)} cy={y(v)} r="3" className="c-dot fill-[#0a2523] stroke-actual stroke-[1.5] opacity-0" />
+        <circle key={i} cx={x(i)} cy={y(v)} r="3" className="c-dot fill-deep stroke-actual stroke-[1.5] opacity-0" />
       ))}
       <circle cx={x(last)} cy={y(actual[last])} r="6" className="c-now fill-forecast opacity-0">
         <animate attributeName="r" values="6;9;6" dur="2.4s" repeatCount="indefinite" />

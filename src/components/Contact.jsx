@@ -18,7 +18,7 @@ export default function Contact() {
 
   return (
     <section id="contact" data-theme="light" className="relative overflow-hidden bg-paper-mist py-28 text-main">
-      <div aria-hidden="true" data-speed="0.18" className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-sky-400/25 blur-3xl will-change-transform" />
+      <div aria-hidden="true" data-speed="0.18" className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-bright/20 blur-3xl will-change-transform" />
       <div className="wrap relative grid items-start gap-14 lg:grid-cols-[1fr_1.15fr]">
         <SectionHead n="05" label="Contact" title="Tell us what you are working on" mb="mb-0">
           Share a few details and we will get back to you.

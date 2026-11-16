@@ -5,15 +5,6 @@ import HeroChart from './HeroChart'
 import { DASH, DIGITS } from './ui'
 import { heroStats } from '../data'
 
-/*
-  How the effect works (same idea as the reference site):
-  - The dark hero is ONE full-size layer. Scrolling animates its clip-path from "show everything"
-    to a small centered card. Nothing is scaled; the layer is simply cropped from all sides.
-  - Inside that same layer, a dashboard card sits exactly where the card ends up, hidden at first.
-    When the crop reaches the card size, the hero text has faded out and the dashboard fades in.
-  - The light background, dotted grid lines, headline and pillars sit behind the layer and
-    fade in around the card.
-*/
 const STAGE_H = 'h-[calc(100svh-72px)] min-h-[560px]'
 
 const pillars = [
@@ -90,8 +81,8 @@ export default function Hero() {
           <span className={`gridline absolute inset-x-[3%] bottom-[6%] border-t ${DASH} ${hide}`} />
           <span className={`gridline absolute inset-y-[3%] left-[34%] border-l ${DASH} ${hide}`} />
           <span className={`gridline absolute inset-y-[3%] left-[66%] border-l ${DASH} ${hide}`} />
-          <span className={`gridline absolute left-[3%] top-[6%] h-2 w-2 -translate-y-1/2 bg-accent ${hide}`} />
-          <span className={`gridline absolute left-[34%] top-[6%] h-2 w-2 -translate-y-1/2 bg-accent ${hide}`} />
+          <span className={`gridline absolute left-[3%] top-[6%] h-2 w-2 -translate-y-1/2 bg-bright ${hide}`} />
+          <span className={`gridline absolute left-[34%] top-[6%] h-2 w-2 -translate-y-1/2 bg-bright ${hide}`} />
         </div>
 
         {/* Headline (left on desktop, top on mobile) */}
@@ -108,7 +99,7 @@ export default function Hero() {
         <div className="absolute bottom-[6%] left-[67%] right-[3%] top-[6%] hidden flex-col lg:flex">
           {pillars.map((p) => (
             <div key={p.n} className={`reveal flex-1 border-t ${DASH} px-8 pt-6 ${hide}`}>
-              <span className="inline-block bg-black px-2 py-1 font-display text-xs font-semibold text-white">{p.n}</span>
+              <span className="inline-block bg-primary px-2 py-1 font-display text-xs font-semibold text-white">{p.n}</span>
               <h3 className="mt-4 text-xl font-semibold">{p.title}</h3>
               <p className="mt-2 max-w-xs text-soft">{p.text}</p>
             </div>
