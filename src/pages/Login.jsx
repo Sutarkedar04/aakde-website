@@ -25,7 +25,7 @@ export default function Login() {
         <Field label="Email" type="email" autoComplete="email" {...props('email')} />
         <Field label="Password" type="password" autoComplete="current-password" {...props('password')} />
         <button type="submit" className="btn btn-primary">Log in</button>
-        {sent && <p role="status" className="font-medium text-accent">Logged in. (Connect an API to make this real.)</p>}
+        {sent && <p role="status" className="font-medium text-success">Logged in. (Connect an API to make this real.)</p>}
       </form>
     </AuthLayout>
   )

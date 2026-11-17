@@ -1,12 +1,13 @@
 import { navLinks } from '../data'
+import logo from '../assets/aakde_logo.png'
 
 export default function Footer() {
   return (
     <footer data-theme="dark" className={`relative overflow-hidden pb-6 pt-20 text-soft bg-navy`}>
       <div className="wrap relative grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <strong className="font-display text-xl text-main">AAKDE<span className="ml-2 font-dev text-highlight">आकडे</span></strong>
-          <p className="mt-2">Intelligence for better decisions.</p>
+          <img src={logo} alt="AAKDE" className="h-9 w-auto" />
+          <p className="mt-3">Intelligence for better decisions.</p>
         </div>
         <nav aria-label="Footer" className="grid grid-cols-2 content-start gap-2 text-sm uppercase tracking-[0.15em]">
           {navLinks.map((l) => (

@@ -3,29 +3,34 @@
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
-  --base: #10154A;
-  --main: #FFFFFF;
-  --soft: rgb(232 234 246 / 0.72);
+  --base: #10154A;                    /* Navy 900: deep background */
+  --main: #FFFFFF;                    /* Pure White: text on navy */
+  --soft: rgb(232 234 246 / 0.72);    /* Navy Tint at 72% */
   --line: rgb(255 255 255 / 0.14);
-  --accent: #7FD0F5;
-  --accent-ink: #10154A;
+  --accent: #7FD0F5;                  /* Light Bright Blue: links on dark */
+  --accent-ink: #10154A;              /* text on accent fills (buttons, badges) */
   --highlight: #7FD0F5;
   --heading: #FFFFFF;
-  --danger: #EF7B7B;
+  --focus: #7FD0F5;                   /* focus ring */
+  --danger: #EF7B7B;                  /* Alert Red, lightened for contrast on navy */
+  --success: #6FE3A4;                 /* Success Green, lightened for contrast on navy */
 }
 [data-theme="light"] {
   color-scheme: light;
-  --base: #F5F7FA;
-  --main: #2B2B2B;
+  --base: #F5F7FA;                    /* Soft White: page background */
+  --main: #2B2B2B;                    /* Charcoal: body text, never pure black */
   --soft: rgb(43 43 43 / 0.70);
-  --line: #E6E9EF;
-  --accent: #1A237E;
+  --line: #E6E9EF;                    /* Light Grey: borders and dividers */
+  --accent: #1A237E;                  /* Navy Blue: buttons, badges */
   --accent-ink: #FFFFFF;
-  --highlight: #009FE3;
-  --heading: #1A237E;
-  --danger: #D32F2F;
+  --highlight: #009FE3;               /* Bright Blue: lines, icons, key numbers */
+  --heading: #1A237E;                 /* Navy Blue: headings */
+  --focus: #1A237E;                   /* Bright Blue is too faint (about 2.8:1) for a focus ring on Soft White */
+  --danger: #D32F2F;                  /* Alert Red */
+  --success: #1E8E5A;                 /* Success Green */
 }
 
+/* Theme-aware colours: these change with data-theme */
 @theme inline {
   --color-base: var(--base);
   --color-main: var(--main);
@@ -35,6 +40,7 @@
   --color-accent-ink: var(--accent-ink);
   --color-highlight: var(--highlight);
   --color-danger: var(--danger);
+  --color-success: var(--success);
 }
 
 @theme {
@@ -43,6 +49,7 @@
   --font-dev: "Noto Sans Devanagari", sans-serif;
 }
 
+/* Fixed palette colours: the same in every theme */
 @theme static {
   --color-primary: #1A237E;
   --color-secondary: #3D4899;
@@ -50,9 +57,11 @@
   --color-bright-light: #7FD0F5;
   --color-deep: #10154A;
   --color-tint: #E8EAF6;
-  --color-success: #1E8E5A;
+  --color-charcoal: #2B2B2B;
   --color-warning: #F2A900;
+  --color-alert: #D32F2F;
 
+  /* Short names used by Blend and the chart */
   --color-paper: #F5F7FA;
   --color-haze: #E6E9EF;
   --color-mist: #E8EAF6;
@@ -67,22 +76,24 @@
   body { font-family: var(--font-body); background: var(--base); color: var(--main); }
   [data-theme] { background-color: var(--base); color: var(--main); }
   h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; color: var(--heading); }
-  :focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 }
 
 @utility wrap { width: min(1120px, calc(100% - 3rem)); margin-inline: auto; }
 
-@utility bg-navy       { background-image: linear-gradient(180deg, #10154A 0%, #1A237E 60%, #3D4899 100%); }
-@utility bg-dawn       { background-image: linear-gradient(180deg, #E8EAF6 0%, #E6E9EF 45%, #F5F7FA 100%); }
-@utility bg-paper-haze { background-image: linear-gradient(180deg, #F5F7FA 0%, #E6E9EF 100%); }
-@utility bg-paper-mist { background-image: linear-gradient(180deg, #F5F7FA 0%, #E8EAF6 100%); }
+/* Section backgrounds (palette colours only) */
+@utility bg-navy        { background-image: linear-gradient(180deg, #10154A 0%, #1A237E 60%, #3D4899 100%); }
+@utility bg-dawn        { background-image: linear-gradient(180deg, #E8EAF6 0%, #E6E9EF 45%, #F5F7FA 100%); }
+@utility bg-paper-haze  { background-image: linear-gradient(180deg, #F5F7FA 0%, #E6E9EF 100%); }
+@utility bg-haze-paper  { background-image: linear-gradient(180deg, #E6E9EF 0%, #F5F7FA 100%); }
+@utility bg-paper-mist  { background-image: linear-gradient(180deg, #F5F7FA 0%, #E8EAF6 100%); }
 
 @layer components {
   .btn { @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-display text-sm font-semibold transition hover:-translate-y-0.5; }
   .btn-primary { @apply bg-accent text-accent-ink hover:opacity-90; }
   .btn-ghost { @apply border border-main/40 text-main hover:bg-main/10; }
   .h2 { @apply mb-12 text-3xl font-semibold tracking-tight md:text-5xl; }
-  .badge { @apply inline-block bg-main px-2 py-1 font-display text-[11px] text-accent-ink; }
+  .badge { @apply inline-block bg-accent px-2 py-1 font-display text-[11px] text-accent-ink; }
 }
 
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }

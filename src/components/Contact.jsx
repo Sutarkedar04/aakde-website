@@ -31,7 +31,7 @@ export default function Contact() {
             <Field label="Subject" {...props('subject')} />
             <Field label="Message" type="textarea" wide {...props('message')} />
             <button type="submit" className="btn btn-primary sm:col-span-2">Send message</button>
-            {sent && <p role="status" className="font-medium text-accent sm:col-span-2">Message sent. Thank you for reaching out.</p>}
+            {sent && <p role="status" className="font-medium text-success sm:col-span-2">Message sent. Thank you for reaching out.</p>}
           </form>
         </div>
       </div>

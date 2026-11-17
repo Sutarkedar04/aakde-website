@@ -29,7 +29,7 @@ export default function Register() {
         <Field label="Password" type="password" autoComplete="new-password" {...props('password')} />
         <Field label="Confirm password" type="password" autoComplete="new-password" {...props('confirm')} />
         <button type="submit" className="btn btn-primary">Create account</button>
-        {sent && <p role="status" className="font-medium text-accent">Account created. (Connect an API to make this real.)</p>}
+        {sent && <p role="status" className="font-medium text-success">Account created. (Connect an API to make this real.)</p>}
       </form>
     </AuthLayout>
   )
