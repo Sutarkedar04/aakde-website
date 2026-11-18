@@ -3,6 +3,7 @@ import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import ServicePage from './pages/ServicePage'
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/services/:slug" element={<ServicePage />} />
       </Routes>
     </>
   )

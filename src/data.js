@@ -30,9 +30,3 @@ export const values = [
   { title: 'Mentorship', text: 'Sharing knowledge and expertise to help people and organizations build their skills.' },
   { title: 'Accountability', text: 'Responsibility for our actions and outcomes, with transparency and trust.' },
 ]
-export const heroStats = [
-  { label: 'Predictive fidelity', value: '99.4%', note: 'AUC-ROC calibrated' },
-  { label: 'Risk modeled', value: '₹150M+', note: 'Basel framework aligned' },
-  { label: 'Quants trained', value: '4,200+', note: 'Pan-India practitioners' },
-  { label: 'Incorporated', value: 'Dec 2020', note: 'Kolhapur, Maharashtra' },
-]

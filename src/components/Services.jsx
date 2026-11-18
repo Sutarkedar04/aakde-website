@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import { services } from '../data'
+import { servicePages } from '../servicePages'
 import SectionHead from './SectionHead'
 import Badge from './Badge'
 import { DASH } from './ui'
@@ -10,10 +12,11 @@ export default function Services() {
         <SectionHead n="03" label="Services" title="Solutions and services" />
         <div className={`grid border-t ${DASH} md:grid-cols-2`}>
           {services.map(({ word, title, text }, i) => (
-            <article
+            <Link
               key={title}
+              to={`/services/${servicePages[i].slug}`}
               data-reveal
-              className={`relative overflow-hidden border-b ${DASH} p-8 transition-colors hover:bg-main/3 md:min-h-72 md:p-10 md:odd:border-r`}
+              className={`relative block overflow-hidden border-b ${DASH} p-8 transition-colors hover:bg-main/3 md:min-h-72 md:p-10 md:odd:border-r`}
             >
               <Badge n={i + 1} />
               <h3 className="mt-8 max-w-xs text-xl font-semibold">{title}</h3>
@@ -25,7 +28,7 @@ export default function Services() {
               >
                 {word}
               </span>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

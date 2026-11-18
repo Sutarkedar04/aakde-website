@@ -17,6 +17,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <Blend from="var(--color-steel)" to="var(--color-paper)" />
         <Expertise />
         <Blend from="var(--color-paper)" to="var(--color-night)" />
         <About />

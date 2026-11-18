@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import { navLinks } from '../data'
 import logo from '../assets/aakde_logo.png'
 
@@ -29,9 +28,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-base/85 backdrop-blur-md">
       <div className="wrap flex h-18 items-center justify-between gap-6">
-       <a href="#home" aria-label="AAKDE home" className="shrink-0">
-  <img src={logo} alt="AAKDE" className="h-10 w-auto" />
-</a>
+        <a href="#home" aria-label="AAKDE home" className="shrink-0">
+          <img src={logo} alt="AAKDE" className="h-10 w-auto" />
+        </a>
 
         <nav
           aria-label="Main"
@@ -49,10 +48,8 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-          <Link to="/login" className="btn btn-primary mt-3 md:hidden">Login</Link>
         </nav>
 
-        <Link to="/login" className="btn btn-primary hidden px-5! py-2.5! md:inline-flex">Login</Link>
         <button className="text-main md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>

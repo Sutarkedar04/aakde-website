@@ -6,7 +6,7 @@ export default function About() {
     <section id="about" data-theme="dark" className={`relative overflow-hidden py-28 text-main bg-navy`}>
       <div
         aria-hidden="true"
-        data-speed="0.15"
+        data-speed="0.3"
         className="pointer-events-none absolute inset-x-0 inset-y-[-15%] select-none overflow-hidden break-all font-mono text-[13px] leading-[1.35] tracking-[0.35em] text-white/6 will-change-transform mask-[radial-gradient(70%_70%_at_30%_50%,black,transparent)]"
       >
         {DIGITS}
