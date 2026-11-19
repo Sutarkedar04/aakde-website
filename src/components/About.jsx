@@ -1,38 +1,54 @@
+import { useRef } from 'react'
 import SectionHead from './SectionHead'
+import useWordReveal from '../hooks/useWordReveal'
 import { DIGITS } from './ui'
 
 export default function About() {
+  const sectionRef = useRef(null)
+  const textRef = useRef(null)
+
+  useWordReveal(textRef, { sectionRef })
+
   return (
-    <section id="about" data-theme="dark" className={`relative overflow-hidden py-28 text-main bg-navy`}>
+    <section
+      ref={sectionRef}
+      id="about"
+      data-theme="dark"
+      className="relative overflow-hidden bg-navy py-28 text-main lg:flex lg:min-h-[calc(100svh-72px)] lg:items-center lg:py-0"
+    >
       <div
         aria-hidden="true"
-        data-speed="0.3"
+        data-digits
         className="pointer-events-none absolute inset-x-0 inset-y-[-15%] select-none overflow-hidden break-all font-mono text-[13px] leading-[1.35] tracking-[0.35em] text-white/6 will-change-transform mask-[radial-gradient(70%_70%_at_30%_50%,black,transparent)]"
       >
         {DIGITS}
       </div>
+
       <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
         <div
           aria-hidden="true"
-          data-speed="-0.08"
+          data-logo
           className="bg-linear-to-br from-white to-accent bg-clip-text font-dev text-[clamp(6rem,16vw,12rem)] font-bold leading-none text-transparent will-change-transform"
         >
           आकडे
         </div>
+
         <div>
           <SectionHead n="02" label="About" title="About AAKDE" mb="mb-8" />
-          <div className="space-y-4 text-soft">
-            <p data-reveal>
+
+          <div ref={textRef} className="space-y-4 text-soft">
+            <p>
               AAKDE comes from the Marathi word for “numbers”. We believe every business problem can be understood and
               solved through quantitative thinking. We combine statistics, risk analytics, machine learning and
               quantitative finance to deliver practical solutions.
             </p>
-            <p data-reveal>
+            <p>
               Our mission is to bridge the gap between theory and practice in quantitative analytics, giving individuals
               and organizations the resources, expertise and support to thrive in a data-driven world.
             </p>
           </div>
-          <div data-reveal className="mt-8 border border-dashed border-main/25 p-6">
+
+          <div data-after className="mt-8 border border-dashed border-main/25 p-6">
             <p className="font-display text-sm font-semibold uppercase tracking-[0.18em]">
               <span className="font-dev text-highlight">आकडे</span> · Marathi
             </p>

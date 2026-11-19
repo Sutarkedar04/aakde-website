@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { navLinks } from '../data'
+import useDock from '../hooks/useDock'
 import logo from '../assets/aakde_logo.png'
 
 function useActiveSection(ids) {
@@ -24,6 +25,8 @@ const ids = navLinks.map((l) => l.id)
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const active = useActiveSection(ids)
+  const navRef = useRef(null)
+  useDock(navRef) // dock-style magnification on hover (desktop)
 
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-base/85 backdrop-blur-md">
@@ -33,15 +36,16 @@ export default function Navbar() {
         </a>
 
         <nav
+          ref={navRef}
           aria-label="Main"
-          className={`${open ? 'flex' : 'hidden'} absolute left-0 right-0 top-18 flex-col border-b border-line bg-base px-6 pb-5 md:static md:flex md:flex-row md:gap-7 md:border-0 md:bg-transparent md:p-0`}
+          className={`${open ? 'flex' : 'hidden'} absolute left-0 right-0 top-18 flex-col border-b border-line bg-base px-6 pb-5 md:relative md:inset-auto md:flex md:flex-row md:gap-7 md:border-0 md:bg-transparent md:p-0`}
         >
           {navLinks.map((l) => (
             <a
               key={l.id}
               href={`#${l.id}`}
               onClick={() => setOpen(false)}
-              className={`border-b-2 py-3 text-sm transition md:py-1.5 ${
+              className={`border-b-2 py-3 text-sm transition-colors md:py-1.5 ${
                 active === l.id ? 'border-accent text-main' : 'border-transparent text-main/70 hover:text-main'
               }`}
             >

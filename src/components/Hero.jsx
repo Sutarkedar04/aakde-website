@@ -1,8 +1,44 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { SplitText } from 'gsap/SplitText'
 import { DIGITS } from './ui'
+
+gsap.registerPlugin(SplitText)
 
 const STAGE_H = 'h-[88svh] min-h-[520px]'
 
 export default function Hero() {
+  const headingRef = useRef(null)
+  const splitRef = useRef(null)
+
+  useEffect(() => {
+    const el = headingRef.current
+    if (!el) return
+
+    // Split once into words + chars
+    const split = SplitText.create(el, { type: 'chars, words' })
+    splitRef.current = split
+
+    // Hide the original text until chars are ready (prevents flash)
+    gsap.set(el, { autoAlpha: 1 })
+
+    // One-shot entrance: chars fly in from random Y / rotation
+    gsap.from(split.chars, {
+      yPercent: 'random(-200, 200)',
+      rotation: 'random(-20, 20)',
+      opacity: 0,
+      ease: 'back.out(1.2)',
+      duration: 1,
+      stagger: 0.02,
+      // No repeat, no yoyo, no scrollTrigger → runs only on mount/refresh
+    })
+
+    return () => {
+      split.revert()
+      splitRef.current = null
+    }
+  }, [])
+
   return (
     <section id="home" data-theme="dark" className={`relative overflow-hidden bg-navy text-main ${STAGE_H}`}>
       {/* Parallax digits: same pattern as About, slightly faster (0.15 -> 0.2) */}
@@ -19,7 +55,11 @@ export default function Hero() {
           <p className="mb-5 animate-[rise_.8s_both] font-display text-lg font-semibold text-soft">
             AAKDE <span className="ml-1 font-dev text-soft">आकडे</span>
           </p>
-          <h1 className="max-w-3xl animate-[rise_.8s_.1s_both] text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl">
+          <h1
+            ref={headingRef}
+            className="max-w-3xl text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl"
+            style={{ visibility: 'hidden' }} // revealed by GSAP once split is ready
+          >
             Intelligence for better decisions
           </h1>
           <div className="mt-10 flex animate-[rise_.8s_.3s_both] flex-wrap gap-3.5">
