@@ -1,22 +1,43 @@
-import { useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import Instructions from '../components/test/Instructions'
 import TestRunner from '../components/test/TestRunner'
 import Result from '../components/test/Result'
 import { scoreTest } from '../lib/scoring'
-import { saveAttempt } from '../testsApi'
-import { tests } from '../tests'
+import { buildTest, configFromParams } from '../lib/buildTest'
+import { getTest, saveAttempt } from '../testsApi'
 import logo from '../assets/aakde_logo.png'
 
 /* One page, three steps: instructions -> test -> result */
 export default function TestPage() {
   const { id } = useParams()
+  const [sp] = useSearchParams()
   const navigate = useNavigate()
-  const test = tests.find((t) => t.id === id)
+
+  // undefined = still loading, null = not found
+  const [base, setBase] = useState(undefined)
+  useEffect(() => {
+    let live = true
+    setBase(undefined)
+    getTest(id).then((t) => live && setBase(t?.questions?.length ? t : null))
+    return () => { live = false }
+  }, [id])
+
+  // The version of the test the student chose (questions and time come from the URL)
+  const query = sp.toString()
+  const test = useMemo(() => (base ? buildTest(base, configFromParams(sp)) : null), [base, query]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const [step, setStep] = useState('instructions')
   const [outcome, setOutcome] = useState(null)
   const [round, setRound] = useState(0) // changes on every attempt so the test starts fresh
+
+  if (base === undefined) {
+    return (
+      <main data-theme="light" className="grid min-h-svh place-items-center bg-paper p-6 text-main">
+        <p role="status" className="text-soft">Loading test…</p>
+      </main>
+    )
+  }
 
   if (!test) {
     return (
