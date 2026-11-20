@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { services } from '../data'
-import { servicePages } from '../servicePages'
 import SectionHead from './SectionHead'
 import Badge from './Badge'
 import { DASH } from './ui'
+
+// Same order as the cards in data.js: each card opens its own page
+const paths = ['/services/sarav', '/services/kaushalya', '/services/paramarsh', '/services/sahyog']
 
 export default function Services() {
   return (
@@ -14,7 +16,7 @@ export default function Services() {
           {services.map(({ word, title, text }, i) => (
             <Link
               key={title}
-              to={`/services/${servicePages[i].slug}`}
+              to={paths[i]}
               data-reveal
               className={`relative block overflow-hidden border-b ${DASH} p-8 transition-colors hover:bg-main/3 md:min-h-72 md:p-10 md:odd:border-r`}
             >

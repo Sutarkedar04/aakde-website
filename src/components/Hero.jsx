@@ -1,47 +1,11 @@
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { SplitText } from 'gsap/SplitText'
 import { DIGITS } from './ui'
-
-gsap.registerPlugin(SplitText)
 
 const STAGE_H = 'h-[88svh] min-h-[520px]'
 
 export default function Hero() {
-  const headingRef = useRef(null)
-  const splitRef = useRef(null)
-
-  useEffect(() => {
-    const el = headingRef.current
-    if (!el) return
-
-    // Split once into words + chars
-    const split = SplitText.create(el, { type: 'chars, words' })
-    splitRef.current = split
-
-    // Hide the original text until chars are ready (prevents flash)
-    gsap.set(el, { autoAlpha: 1 })
-
-    // One-shot entrance: chars fly in from random Y / rotation
-    gsap.from(split.chars, {
-      yPercent: 'random(-200, 200)',
-      rotation: 'random(-20, 20)',
-      opacity: 0,
-      ease: 'back.out(1.2)',
-      duration: 1,
-      stagger: 0.02,
-      // No repeat, no yoyo, no scrollTrigger → runs only on mount/refresh
-    })
-
-    return () => {
-      split.revert()
-      splitRef.current = null
-    }
-  }, [])
-
   return (
     <section id="home" data-theme="dark" className={`relative overflow-hidden bg-navy text-main ${STAGE_H}`}>
-      {/* Parallax digits: same pattern as About, slightly faster (0.15 -> 0.2) */}
+      {/* Parallax digits */}
       <div
         aria-hidden="true"
         data-speed="0.3"
@@ -50,29 +14,33 @@ export default function Hero() {
         {DIGITS}
       </div>
 
-      <div className={`wrap relative flex flex-col ${STAGE_H}`}>
-        <div className="flex flex-1 flex-col justify-center">
-          <p className="mb-5 animate-[rise_.8s_both] font-display text-lg font-semibold text-soft">
-            AAKDE <span className="ml-1 font-dev text-soft">आकडे</span>
+      {/* Main wrapper: Centered as a single block, no longer stretched */}
+      <div className={`wrap relative flex flex-col justify-center ${STAGE_H}`}>
+        
+        <div>
+          {/* Brand Name */}
+          <p className="mb-4 animate-[rise_.8s_both] font-display text-4xl font-bold leading-[1.1] tracking-tight text-accent md:text-6xl">
+            AAKDE <span className="ml-2 font-dev">आकडे</span>
           </p>
-          <h1
-            ref={headingRef}
-            className="max-w-3xl text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl"
-            style={{ visibility: 'hidden' }} // revealed by GSAP once split is ready
-          >
+          
+          {/* Heading */}
+          <h1 className="max-w-3xl animate-[rise_.8s_.1s_both] text-2xl font-semibold leading-[1.2] tracking-tight text-soft md:text-3xl">
             Intelligence for better decisions
           </h1>
+          
           <div className="mt-10 flex animate-[rise_.8s_.3s_both] flex-wrap gap-3.5">
             <a href="#services" className="btn btn-primary">Explore services</a>
             <a href="#contact" className="btn btn-ghost">Contact us</a>
           </div>
         </div>
 
-        <div className="pb-8">
-          <p className="max-w-md animate-[rise_.8s_.45s_both] text-lg text-soft">
+        {/* The bottom text: uses a tight margin (mt-10) instead of being pushed by flex-1 */}
+        <div className="mt-10 animate-[rise_.8s_.45s_both]">
+          <p className="max-w-lg text-lg text-soft">
             We turn complex data into clear, actionable intelligence so individuals and organizations can decide with confidence.
           </p>
         </div>
+
       </div>
     </section>
   )
