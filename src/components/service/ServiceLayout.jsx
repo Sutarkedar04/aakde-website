@@ -54,10 +54,10 @@ export default function ServiceLayout({ name, word, subtitle, tagline, ctas, abo
       <Blend from="var(--color-steel)" to="var(--color-paper)" />
 
       <section data-theme="light" className="bg-paper pb-24 pt-4 text-main">
-        <div className="wrap space-y-20">
+        <div className="wrap grid gap-20">
           <SectionHead n="01" label="About" title={aboutHeading} mb="mb-0">{about}</SectionHead>
           {children}
-          <Link to="/" className="btn btn-primary">Back to home</Link>
+          <Link to="/" className="btn btn-primary justify-self-start">Back to home</Link>
         </div>
       </section>
     </>
