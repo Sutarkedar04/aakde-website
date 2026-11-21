@@ -2,13 +2,18 @@
   Test content. IMPORTANT: the questions below are generic PRACTICE PLACEHOLDERS written to demo the feature.
   They are not real ISS questions. Replace them with the owner's question set before launch.
 
+  id       unique per test, used in the URL: /sarav/test/<id>
+  exam     the id of an exam in exams.js (e.g. 'iss', 'acet')
   topic    groups questions in the result analysis
   answer   index (0-3) of the correct option in `options`
+
+  To add a demo test for another exam, copy the object below, change id / exam / title / questions,
+  and add it to the array. That exam's row in SARAV changes from "Coming soon" to "1 test".
 */
 export const tests = [
   {
     id: 'iss-demo-1',
-    exam: 'ISS',
+    exam: 'iss',
     title: 'ISS Quantitative Mock Test 1 (Demo)',
     duration: 20, // minutes
     marks: { correct: 1, wrong: 0.25 },
@@ -27,4 +32,14 @@ export const tests = [
       { id: 'q12', topic: 'Aptitude', text: 'Two numbers are in the ratio 3 : 5 and their sum is 64. The larger number is', options: ['24', '40', '32', '45'], answer: 1, explanation: 'The larger number is 5/8 of 64, which is 40.' },
     ],
   },
+
+  // Example: demo test for another exam (uncomment and fill in)
+  // {
+  //   id: 'acet-demo-1',
+  //   exam: 'acet',
+  //   title: 'ACET Mock Test 1 (Demo)',
+  //   duration: 20,
+  //   marks: { correct: 1, wrong: 0.25 },
+  //   questions: [ /* ... */ ],
+  // },
 ]

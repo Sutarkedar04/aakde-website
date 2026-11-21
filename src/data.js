@@ -2,10 +2,7 @@ import { ShieldCheck, Sigma, BrainCircuit, TrendingUp } from 'lucide-react'
 
 export const navLinks = [
   { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'expertise', label: 'Expertise' },
   { id: 'services', label: 'Services' },
-  { id: 'values', label: 'Values' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -17,10 +14,10 @@ export const expertise = [
 ]
 
 export const services = [
-  { word: 'सराव', title: 'Quant assessment platform', text: 'Structured assessments and performance analytics to strengthen quantitative foundations.' },
-  { word: 'कौशल्य', title: 'Analytics training and skill development', text: 'Industry-focused programs in risk analytics, data science, Python and statistical modeling.' },
-  { word: 'परामर्श', title: 'Analytics consulting services', text: 'Custom analytics solutions for risk modeling, predictive analytics and business strategy.' },
-  { word: 'सहयोग', title: 'Project support and talent solutions', text: 'Skilled analytics professionals for research, modeling and implementation projects.' },
+  { slug: 'sarav', name: 'SARAV', word: 'सराव', title: 'Quant assessment platform', text: 'Structured assessments and performance analytics to strengthen quantitative foundations.' },
+  { slug: 'kaushalya', name: 'KAUSHALYA', word: 'कौशल्य', title: 'Analytics training and skill development', text: 'Industry-focused programs in risk analytics, data science, Python and statistical modeling.' },
+  { slug: 'paramarsh', name: 'PARAMARSH', word: 'परामर्श', title: 'Analytics consulting services', text: 'Custom analytics solutions for risk modeling, predictive analytics and business strategy.' },
+  { slug: 'sahyog', name: 'SAHYOG', word: 'सहयोग', title: 'Project support and talent solutions', text: 'Skilled analytics professionals for research, modeling and implementation projects.' },
 ]
 
 export const values = [

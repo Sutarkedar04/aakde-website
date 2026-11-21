@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { ChevronDown } from 'lucide-react'
 import { getAttempts } from '../../testsApi'
 import { tests } from '../../tests'
+import { exams } from '../../exams'
 import { planFromQuestions } from '../../lib/buildTest'
+import { ScrollTrigger } from '../../lib/gsap'
+import Badge from '../Badge'
+import ExamDetails from './ExamDetails'
 import { DASH } from '../ui'
 
 function TestCard({ t, best }) {
@@ -79,25 +84,69 @@ export default function MockTests() {
   const [attempts, setAttempts] = useState([])
   useEffect(() => { getAttempts().then(setAttempts) }, [])
 
+  // Open the first exam that already has a test, so a demo is visible right away
+  const [openId, setOpenId] = useState(() => exams.find((e) => tests.some((t) => t.exam === e.id))?.id ?? null)
+
+  // Opening or closing a row changes the page height, so re-measure the scroll animations
+  useEffect(() => { ScrollTrigger.refresh() }, [openId])
+
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
-      <div data-reveal>
-        <h3 className="text-2xl font-semibold md:text-3xl">Mock tests</h3>
-        <p className="mt-3 max-w-sm text-soft">
-          Timed tests with a question palette, instant results and an answer key with explanations. Choose how many
-          questions to attempt, or how much time you have.
+    <div>
+      <div data-reveal className="mb-10 max-w-2xl">
+        <h3 className="text-2xl font-semibold md:text-3xl">Examinations</h3>
+        <p className="mt-3 text-soft">
+          Choose an examination to read about it and practise with a demo mock test.
         </p>
       </div>
 
-      <div className="grid gap-4">
-        {tests.map((t) => {
-          // Compare by percentage, because attempts can now have different lengths
-          const pct = (a) => Math.round((a.score / (a.maxScore || t.questions.length * t.marks.correct)) * 100)
-          const mine = attempts.filter((a) => a.testId === t.id)
-          const best = mine.length ? Math.max(...mine.map(pct)) : null
-          return <TestCard key={t.id} t={t} best={best} />
+      <ul className={`border-t ${DASH}`}>
+        {exams.map((e, i) => {
+          const list = tests.filter((t) => t.exam === e.id)
+          const isOpen = openId === e.id
+          return (
+            <li key={e.id} data-reveal className={`border-b ${DASH}`}>
+              <h4>
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={`exam-${e.id}`}
+                  onClick={() => setOpenId(isOpen ? null : e.id)}
+                  className="flex w-full items-center gap-4 py-5 text-left transition-colors hover:bg-main/3"
+                >
+                  <Badge n={i + 1} />
+                  <span className="flex-1 text-lg font-medium">{e.name}</span>
+                  <span className="hidden text-[11px] font-semibold uppercase tracking-[0.15em] text-soft sm:block">
+                    {list.length ? `${list.length} test${list.length > 1 ? 's' : ''}` : 'Coming soon'}
+                  </span>
+                  <ChevronDown
+                    size={20}
+                    aria-hidden="true"
+                    className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+              </h4>
+
+              {isOpen && (
+                <div id={`exam-${e.id}`} className="pb-10 md:pl-14">
+                  <ExamDetails exam={e} topics={[...new Set(list.flatMap((t) => t.questions.map((q) => q.topic)))]}>
+                    {list.length > 0 && (
+                      <div className="grid gap-4 lg:grid-cols-2">
+                        {list.map((t) => {
+                          // Compare by percentage, because attempts can have different lengths
+                          const pct = (a) => Math.round((a.score / (a.maxScore || t.questions.length * t.marks.correct)) * 100)
+                          const mine = attempts.filter((a) => a.testId === t.id)
+                          const best = mine.length ? Math.max(...mine.map(pct)) : null
+                          return <TestCard key={t.id} t={t} best={best} />
+                        })}
+                      </div>
+                    )}
+                  </ExamDetails>
+                </div>
+              )}
+            </li>
+          )
         })}
-      </div>
+      </ul>
     </div>
   )
 }

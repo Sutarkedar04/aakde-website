@@ -4,19 +4,16 @@ import SectionHead from './SectionHead'
 import Badge from './Badge'
 import { DASH } from './ui'
 
-// Same order as the cards in data.js: each card opens its own page
-const paths = ['/services/sarav', '/services/kaushalya', '/services/paramarsh', '/services/sahyog']
-
 export default function Services() {
   return (
     <section id="services" data-theme="light" className="bg-paper-haze py-20 md:py-24 text-main">
       <div className="wrap">
         <SectionHead n="03" label="Services" title="Solutions and services" />
         <div className={`grid border-t ${DASH} md:grid-cols-2`}>
-          {services.map(({ word, title, text }, i) => (
+          {services.map(({ slug, word, title, text }, i) => (
             <Link
-              key={title}
-              to={paths[i]}
+              key={slug}
+              to={`/services/${slug}`}
               data-reveal
               className={`relative block overflow-hidden border-b ${DASH} p-8 transition-colors hover:bg-main/3 md:min-h-72 md:p-10 md:odd:border-r`}
             >
