@@ -5,7 +5,7 @@ import { DASH } from './ui'
 
 export default function Expertise() {
   return (
-    <section id="expertise" data-theme="light" className="relative overflow-hidden bg-paper py-28 text-main">
+    <section id="expertise" data-theme="light" className="relative overflow-hidden bg-paper py-20 md:py-24 text-main">
       <div aria-hidden="true" data-speed="0.2" className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-bright/20 blur-3xl will-change-transform" />
       <div className="wrap relative">
         <SectionHead n="01" label="Expertise" title="Core analytics expertise" />

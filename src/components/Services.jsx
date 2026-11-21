@@ -9,7 +9,7 @@ const paths = ['/services/sarav', '/services/kaushalya', '/services/paramarsh', 
 
 export default function Services() {
   return (
-    <section id="services" data-theme="light" className="bg-paper-haze py-28 text-main">
+    <section id="services" data-theme="light" className="bg-paper-haze py-20 md:py-24 text-main">
       <div className="wrap">
         <SectionHead n="03" label="Services" title="Solutions and services" />
         <div className={`grid border-t ${DASH} md:grid-cols-2`}>

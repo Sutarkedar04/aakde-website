@@ -18,16 +18,16 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Blend from="var(--color-steel)" to="var(--color-paper)" />
+        <Blend className="h-16 md:h-24" from="var(--color-steel)" to="var(--color-paper)" />
         <Expertise />
-        <Blend from="var(--color-paper)" to="var(--color-night)" />
+        <Blend className="h-16 md:h-24" from="var(--color-paper)" to="var(--color-night)" />
         <About />
-        <Blend from="var(--color-steel)" to="var(--color-paper)" />
+        <Blend className="h-16 md:h-24" from="var(--color-steel)" to="var(--color-paper)" />
         <Services />
         <Values />
         <Contact />
       </main>
-      <Blend from="var(--color-mist)" to="var(--color-night)" />
+      <Blend className="h-16 md:h-24" from="var(--color-mist)" to="var(--color-night)" />
       <Footer />
     </>
   )

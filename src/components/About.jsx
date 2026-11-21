@@ -14,7 +14,7 @@ export default function About() {
       ref={sectionRef}
       id="about"
       data-theme="dark"
-      className="relative overflow-hidden bg-navy py-28 text-main lg:flex lg:min-h-[calc(100svh-72px)] lg:items-center lg:py-0"
+      className="relative overflow-hidden bg-navy py-20 text-main lg:flex lg:min-h-[calc(100svh-72px)] lg:items-center lg:py-0"
     >
       <div
         aria-hidden="true"
@@ -28,7 +28,7 @@ export default function About() {
         <div
           aria-hidden="true"
           data-logo
-          className="bg-linear-to-br from-white to-accent bg-clip-text font-dev text-[clamp(6rem,16vw,12rem)] font-bold leading-none text-transparent will-change-transform"
+          className="bg-linear-to-br from-white to-accent bg-clip-text font-dev text-[clamp(6rem,16vw,12rem)] font-bold leading-[1.35] text-transparent will-change-transform"
         >
           आकडे
         </div>

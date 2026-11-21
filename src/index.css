@@ -45,7 +45,7 @@
 
 @theme {
   --font-display: "Sora", "Noto Sans Devanagari", sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Noto Sans Devanagari", system-ui, sans-serif;
   --font-dev: "Noto Sans Devanagari", sans-serif;
 }
 
