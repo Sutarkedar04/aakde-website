@@ -1,4 +1,4 @@
-import { tests as local } from './tests'
+import { tests as local } from './data/tests'
 
 /*
   Where tests and attempts come from. Today: the local tests.js file and the browser's localStorage.

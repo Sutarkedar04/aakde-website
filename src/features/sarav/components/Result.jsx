@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { DASH } from '../ui'
+import { DASH } from '../../../components/ui'
 
 const fmtTime = (s) => `${Math.floor(s / 60)}m ${String(s % 60).padStart(2, '0')}s`
 

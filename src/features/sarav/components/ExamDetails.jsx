@@ -1,6 +1,6 @@
-import Badge from '../Badge'
-import { ScrollTrigger } from '../../lib/gsap'
-import { DASH } from '../ui'
+import Badge from '../../../components/Badge'
+import { ScrollTrigger } from '../../../lib/gsap'
+import { DASH } from '../../../components/ui'
 
 const heading = 'mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-soft'
 

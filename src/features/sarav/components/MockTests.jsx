@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
-import { getAttempts } from '../../testsApi'
-import { tests } from '../../tests'
-import { exams } from '../../exams'
-import { planFromQuestions } from '../../lib/buildTest'
-import { ScrollTrigger } from '../../lib/gsap'
-import Badge from '../Badge'
+import { getAttempts } from '../testsApi'
+import { tests } from '../data/tests'
+import { exams } from '../data/exams'
+import { planFromQuestions } from '../lib/buildTest'
+import { ScrollTrigger } from '../../../lib/gsap'
+import Badge from '../../../components/Badge'
 import ExamDetails from './ExamDetails'
-import { DASH } from '../ui'
+import { DASH } from '../../../components/ui'
 
 function TestCard({ t, best }) {
   const nav = useNavigate()
@@ -26,7 +26,7 @@ function TestCard({ t, best }) {
       <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-soft">
         <li>Full test: {total} questions</li>
         <li>{t.duration} minutes</li>
-        <li>Negative marking</li>
+        <li>{t.marks.wrong > 0 ? 'Negative marking' : 'No negative marking'}</li>
       </ul>
       {best !== null && <p className="mt-4 text-sm font-medium">Best score: {best}%</p>}
 

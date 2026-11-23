@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { DASH } from '../ui'
+import { DASH } from '../../../components/ui'
 import { Legend, STATUS_CLASS, statusOf } from './status'
 
 const fmt = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`

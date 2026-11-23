@@ -1,4 +1,4 @@
-import { DASH } from '../ui'
+import { DASH } from '../../../components/ui'
 import { Legend } from './status'
 
 export default function Instructions({ test, onStart }) {

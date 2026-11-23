@@ -1,5 +1,5 @@
-import ServiceLayout from '../../components/service/ServiceLayout'
-import MockTests from '../../components/service/MockTests'
+import ServiceLayout from '../../../components/service/ServiceLayout'
+import MockTests from '../components/MockTests'
 
 export default function Sarav() {
   return (
