@@ -34,26 +34,17 @@ export default function About() {
         </div>
 
         <div>
-          <SectionHead n="02" label="About" title="About AAKDE" mb="mb-8" />
+          <SectionHead n="02" label="About AAKDE" title="Bringing intelligence to ideas, learning and action." mb="mb-8" />
 
           <div ref={textRef} className="space-y-4 text-soft">
             <p>
-              AAKDE comes from the Marathi word for “numbers”. We believe every business problem can be understood and
-              solved through quantitative thinking. We combine statistics, risk analytics, machine learning and
-              quantitative finance to deliver practical solutions.
+              AAKDE is an intelligence-driven organization bringing together knowledge, technology and expertise across diverse domains.
             </p>
             <p>
-              Our mission is to bridge the gap between theory and practice in quantitative analytics, giving individuals
-              and organizations the resources, expertise and support to thrive in a data-driven world.
+              Through assessment platforms, professional training, project consulting and project support, we create opportunities, deliver solutions and enable growth.
             </p>
           </div>
 
-          <div data-after className="mt-8 border border-dashed border-main/25 p-6">
-            <p className="font-display text-sm font-semibold uppercase tracking-[0.18em]">
-              <span className="font-dev text-highlight">आकडे</span> · Marathi
-            </p>
-            <p className="mt-2 text-soft">Numbers. The belief that clear thinking about data leads to better decisions.</p>
-          </div>
         </div>
       </div>
     </section>

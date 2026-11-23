@@ -3,6 +3,7 @@ import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import ContactPage from './pages/ContactPage'
 import Sarav from './features/sarav/pages/Sarav'
 import TestPage from './features/sarav/pages/TestPage'
 import Kaushalya from './pages/services/Kaushalya'
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/services/sarav" element={<Sarav />} />
         <Route path="/services/kaushalya" element={<Kaushalya />} />
         <Route path="/services/paramarsh" element={<Paramarsh />} />

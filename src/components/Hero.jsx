@@ -19,8 +19,8 @@ export default function Hero() {
         
         <div>
           {/* Brand Name */}
-          <p className="mb-4 animate-[rise_.8s_both] font-display text-4xl font-bold leading-[1.1] tracking-tight text-accent md:text-6xl">
-            AAKDE <span className="ml-2 font-dev">आकडे</span>
+          <p className="mb-4 animate-[rise_.8s_both] font-display text-4xl font-bold leading-[1.1] tracking-tight text-main md:text-6xl">
+            AAKDE <span className="ml-2 text-accent font-dev">आकडे</span>
           </p>
           
           {/* Heading */}
@@ -30,14 +30,14 @@ export default function Hero() {
           
           <div className="mt-10 flex animate-[rise_.8s_.3s_both] flex-wrap gap-3.5">
             <a href="#services" className="btn btn-primary">Explore services</a>
-            <a href="#contact" className="btn btn-ghost">Contact us</a>
+            <a href="#contact" className="btn btn-ghost">Get in Touch</a>
           </div>
         </div>
 
         {/* The bottom text: uses a tight margin (mt-10) instead of being pushed by flex-1 */}
         <div className="mt-10 animate-[rise_.8s_.45s_both]">
           <p className="max-w-lg text-lg text-soft">
-            We turn complex data into clear, actionable intelligence so individuals and organizations can decide with confidence.
+            Bringing knowledge, technology and expertise together to empower better decisions.
           </p>
         </div>
 

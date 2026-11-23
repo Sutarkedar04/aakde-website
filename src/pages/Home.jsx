@@ -10,19 +10,17 @@ import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
 export default function Home() {
-  useScrollEffects() 
+  useScrollEffects()
 
   return (
     <>
-      
       <Navbar />
       <main>
         <Hero />
-        <Blend className="h-16 md:h-24" from="var(--color-steel)" to="var(--color-paper)" />
-        <Expertise />
-        <Blend className="h-16 md:h-24" from="var(--color-paper)" to="var(--color-night)" />
+        {/*<Blend className="h-16 md:h-24" from="var(--color-steel)" to="var(--color-night)" />*/}
         <About />
         <Blend className="h-16 md:h-24" from="var(--color-steel)" to="var(--color-paper)" />
+        <Expertise />
         <Services />
         <Values />
         <Contact />

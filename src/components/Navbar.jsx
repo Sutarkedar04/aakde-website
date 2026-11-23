@@ -105,26 +105,35 @@ export default function Navbar() {
           aria-label="Main"
           className={`${open ? 'flex' : 'hidden'} absolute left-0 right-0 top-18 flex-col border-b border-line bg-base px-6 pb-5 md:relative md:inset-auto md:flex md:flex-row md:gap-7 md:border-0 md:bg-transparent md:p-0`}
         >
-          {navLinks.map((l) =>
-            l.id === 'services' ? (
-              <ServicesMenu
+          {navLinks.map((l) => {
+            if (l.id === 'services') {
+              return (
+                <ServicesMenu
+                  key={l.id}
+                  label={l.label}
+                  pathname={pathname}
+                  highlighted={pathname.startsWith('/services/') || (pathname === '/' && active === l.id)}
+                  onNavigate={() => setOpen(false)}
+                />
+              )
+            }
+
+            // "Contact" opens the contact page directly; the other links scroll to their section on the home page
+            const isContact = l.id === 'contact'
+            const Item = isContact ? Link : 'a'
+            const target = isContact ? { to: '/contact' } : { href: `/#${l.id}` }
+
+            return (
+              <Item
                 key={l.id}
-                label={l.label}
-                pathname={pathname}
-                highlighted={pathname.startsWith('/services/') || (pathname === '/' && active === l.id)}
-                onNavigate={() => setOpen(false)}
-              />
-            ) : (
-              <a
-                key={l.id}
-                href={`/#${l.id}`}
+                {...target}
                 onClick={() => setOpen(false)}
                 className={`${linkBase} ${pathname === '/' && active === l.id ? on : off}`}
               >
                 {l.label}
-              </a>
+              </Item>
             )
-          )}
+          })}
         </nav>
 
         <button className="text-main md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>

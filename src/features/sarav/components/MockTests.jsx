@@ -85,7 +85,7 @@ export default function MockTests() {
   useEffect(() => { getAttempts().then(setAttempts) }, [])
 
   // Open the first exam that already has a test, so a demo is visible right away
-  const [openId, setOpenId] = useState(() => exams.find((e) => tests.some((t) => t.exam === e.id))?.id ?? null)
+  const [openId, setOpenId] = useState(null)
 
   // Opening or closing a row changes the page height, so re-measure the scroll animations
   useEffect(() => { ScrollTrigger.refresh() }, [openId])

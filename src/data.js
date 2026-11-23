@@ -1,4 +1,4 @@
-import { ShieldCheck, Sigma, BrainCircuit, TrendingUp } from 'lucide-react'
+import { Sigma, Database, ShieldCheck, Lightbulb, Target, ArrowUpRight, Activity, Plus } from 'lucide-react'
 
 export const navLinks = [
   { id: 'home', label: 'Home' },
@@ -6,24 +6,30 @@ export const navLinks = [
   { id: 'contact', label: 'Contact' },
 ]
 
+export const expertiseIntro =
+  'Our work draws on quantitative methods, technology and applied problem-solving across learning and organizational needs.'
+
 export const expertise = [
-  { icon: ShieldCheck, title: 'Risk analytics', text: 'Credit risk modeling, probability of default estimation, portfolio risk analysis and financial risk frameworks.' },
-  { icon: Sigma, title: 'Statistical modeling', text: 'Regression analysis, hypothesis testing, predictive modeling and advanced statistical inference.' },
-  { icon: BrainCircuit, title: 'Machine learning', text: 'Classification, clustering, forecasting and decision-support models.' },
-  { icon: TrendingUp, title: 'Quantitative finance', text: 'Financial mathematics, derivatives analytics, portfolio optimization and risk measurement.' },
+  { icon: Sigma, tag: 'Quantitative Methods', title: 'Statistical Thinking', text: 'Statistical reasoning, modelling and quantitative methods for structured analysis and sound interpretation.' },
+  { icon: Database, tag: 'Data & Technology', title: 'Data Science', text: 'Data handling, programming and computational techniques to support analytical work and learning.' },
+  { icon: ShieldCheck, tag: 'Risk & Finance', title: 'Risk & Financial Analytics', text: 'Quantitative approaches to credit risk, financial analysis and risk-related decision-making.' },
+  { icon: Lightbulb, tag: 'Applied Solutions', title: 'Problem Solving', text: 'Applying relevant knowledge, tools and skills to address defined project and organizational requirements.' },
 ]
 
+export const servicesIntro =
+  'Four distinct offerings, connected by one purpose: bringing the right knowledge, tools and capabilities to every requirement.'
+
 export const services = [
-  { slug: 'sarav', name: 'SARAV', word: 'सराव', title: 'Quant assessment platform', text: 'Structured assessments and performance analytics to strengthen quantitative foundations.' },
-  { slug: 'kaushalya', name: 'KAUSHALYA', word: 'कौशल्य', title: 'Analytics training and skill development', text: 'Industry-focused programs in risk analytics, data science, Python and statistical modeling.' },
-  { slug: 'paramarsh', name: 'PARAMARSH', word: 'परामर्श', title: 'Analytics consulting services', text: 'Custom analytics solutions for risk modeling, predictive analytics and business strategy.' },
-  { slug: 'sahyog', name: 'SAHYOG', word: 'सहयोग', title: 'Project support and talent solutions', text: 'Skilled analytics professionals for research, modeling and implementation projects.' },
+  { slug: 'sarav', name: 'SARAV', word: 'सराव', icon: Target, title: 'Mock Test Platform', text: 'Prepare for competitive examinations through structured mock tests, practice assessments and performance evaluation in Statistics, Data Science, GATE and other relevant examinations.', cta: 'Explore the Platform' },
+  { slug: 'kaushalya', name: 'KAUSHALYA', word: 'कौशल्य', icon: ArrowUpRight, title: 'Analytics Training & Skill Development', text: 'Develop practical, industry-relevant skills through structured training in credit risk analytics, statistics, Python, machine learning and quantitative methods.', cta: 'Explore Training' },
+  { slug: 'paramarsh', name: 'PARAMARSH', word: 'परामर्श', icon: Activity, title: 'Project Consulting', text: 'Turn complex business challenges into practical solutions through statistical analysis, quantitative modelling, data science and technical expertise.', cta: 'Discuss a Project' },
+  { slug: 'sahyog', name: 'SAHYOG', word: 'सहयोग', icon: Plus, title: 'Project Support', text: 'Strengthen your projects with skilled professionals and technical resources aligned with your project scope, required competencies and delivery needs.', cta: 'Discuss Project Support' },
 ]
 
 export const values = [
-  { title: 'Strategy', text: "Strategic thinking that delivers solutions aligned with our clients' long-term goals." },
-  { title: 'Innovation', text: 'Creative, practical solutions for the evolving needs of our clients.' },
-  { title: 'Growth', text: 'Continuous growth for our clients and within our own team.' },
-  { title: 'Mentorship', text: 'Sharing knowledge and expertise to help people and organizations build their skills.' },
-  { title: 'Accountability', text: 'Responsibility for our actions and outcomes, with transparency and trust.' },
+  { title: 'Strategy', text: 'Thoughtful direction shaped by clear objectives and informed decisions.' },
+  { title: 'Innovation', text: 'Exploring relevant ideas, methods and technologies to create better outcomes.' },
+  { title: 'Growth', text: 'Developing people, knowledge and capabilities through continuous learning.' },
+  { title: 'Mentorship', text: 'Sharing knowledge and guidance to help others build confidence and capability.' },
+  { title: 'Accountability', text: 'Working with integrity, transparency and responsibility.' },
 ]
