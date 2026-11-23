@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import Instructions from '../components/test/Instructions'
-import TestRunner from '../components/test/TestRunner'
-import Result from '../components/test/Result'
+import Instructions from '../components/Instructions'
+import TestRunner from '../components/TestRunner'
+import Result from '../components/Result'
 import { scoreTest } from '../lib/scoring'
 import { buildTest, configFromParams } from '../lib/buildTest'
 import { getTest, saveAttempt } from '../testsApi'
-import logo from '../assets/aakde_logo.png'
+import logo from '../../../assets/aakde_logo.png'
 
 /* One page, three steps: instructions -> test -> result */
 export default function TestPage() {

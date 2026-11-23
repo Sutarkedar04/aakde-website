@@ -3,11 +3,12 @@ import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Sarav from './pages/services/Sarav'
+import Sarav from './features/sarav/pages/Sarav'
+import TestPage from './features/sarav/pages/TestPage'
 import Kaushalya from './pages/services/Kaushalya'
 import Paramarsh from './pages/services/Paramarsh'
 import Sahyog from './pages/services/Sahyog'
-import TestPage from './pages/TestPage'
+
 
 export default function App() {
   return (
