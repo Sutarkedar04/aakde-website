@@ -1,28 +1,38 @@
 import { DASH } from '../../../components/ui'
+import { exams } from '../data/exams'
 import { Legend } from './status'
+
+// Show marks the way people write them: 1, 0.25, 1/3, 2/3. Never a long decimal.
+function fmt(n) {
+  const abs = Math.abs(n)
+  const thirds = Math.round(abs * 3)
+  if (Math.abs(abs * 3 - thirds) < 1e-6 && thirds % 3 !== 0) return `${thirds}/3`
+  return String(Math.round(abs * 100) / 100)
+}
 
 export default function Instructions({ test, onStart }) {
   const { questions, duration, marks } = test
+  const examName = exams.find((e) => e.id === test.exam)?.name ?? test.exam
   const facts = [
     ['Questions', questions.length],
     ['Duration', `${duration} minutes`],
-    ['Correct answer', `+${marks.correct}`],
-    ['Wrong answer', `−${marks.wrong}`],
+    ['Correct', `+${fmt(marks.correct)}`],
+    ['Wrong', marks.wrong > 0 ? `−${fmt(marks.wrong)}` : 'No penalty'],
     ['Not attempted', '0'],
   ]
 
   return (
     <div className="mx-auto max-w-3xl space-y-10">
       <div>
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-soft">{test.exam} mock test</p>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-soft">{examName}</p>
         <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{test.title}</h1>
       </div>
 
       <dl className={`grid grid-cols-2 border-y ${DASH} sm:grid-cols-5`}>
         {facts.map(([label, value]) => (
-          <div key={label} className="p-4">
+          <div key={label} className="flex min-w-0 flex-col justify-between gap-1 p-4">
             <dt className="text-xs uppercase tracking-[0.12em] text-soft">{label}</dt>
-            <dd className="mt-1 font-display text-lg font-semibold">{value}</dd>
+            <dd className="font-display text-lg font-semibold">{value}</dd>
           </div>
         ))}
       </dl>
