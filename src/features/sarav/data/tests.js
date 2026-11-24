@@ -104,4 +104,58 @@ export const tests = [
       { id: 'net1-q8', topic: 'Research Aptitude', text: 'Which of these is the most reliable source for a literature review?', options: ['An anonymous blog post', 'A peer-reviewed journal article', 'A social media post', 'An advertisement'], answer: 1, explanation: 'Peer-reviewed articles are checked by experts before publication, which makes them the most reliable of these.' },
     ],
   },
+
+  {
+    id: 'jam-demo-1',
+    exam: 'jam',
+    title: 'IIT JAM Mathematical Statistics Mock Test 1 (Demo)',
+    duration: 12,
+    marks: { correct: 1, wrong: 1 / 3 }, // a wrong 1-mark MCQ costs 1/3 mark
+    questions: [
+      { id: 'jam1-q1', topic: 'Mathematics', text: 'The value of the limit of (eˣ − 1) / x as x approaches 0 is', options: ['0', '1', 'e', '∞'], answer: 1, explanation: 'This is the derivative of eˣ at x = 0, which is e⁰ = 1.' },
+      { id: 'jam1-q2', topic: 'Mathematics', text: 'The determinant of the matrix with rows (1, 2) and (3, 4) is', options: ['−2', '2', '−10', '10'], answer: 0, explanation: 'The determinant is 1 × 4 − 2 × 3 = 4 − 6 = −2.' },
+      { id: 'jam1-q3', topic: 'Mathematics', text: 'The sum of the infinite series 1 + 1/2 + 1/4 + 1/8 + … is', options: ['1', '3/2', '2', '∞'], answer: 2, explanation: 'This is a geometric series with first term 1 and ratio 1/2, so the sum is 1 / (1 − 1/2) = 2.' },
+      { id: 'jam1-q4', topic: 'Probability', text: 'If X follows a Binomial distribution with n = 10 and p = 0.3, the mean of X is', options: ['2', '3', '7', '3.3'], answer: 1, explanation: 'The mean of a Binomial(n, p) variable is np = 10 × 0.3 = 3.' },
+      { id: 'jam1-q5', topic: 'Probability', text: 'A random variable X has E(X) = 3 and Var(X) = 4. Then E(X²) is', options: ['7', '13', '9', '16'], answer: 1, explanation: 'Var(X) = E(X²) − [E(X)]², so E(X²) = 4 + 9 = 13.' },
+      { id: 'jam1-q6', topic: 'Probability', text: 'Events A and B are mutually exclusive with P(A) = 0.3 and P(B) = 0.5. Then P(A ∪ B) is', options: ['0.15', '0.8', '0.2', '0.65'], answer: 1, explanation: 'For mutually exclusive events, P(A ∪ B) = P(A) + P(B) = 0.8.' },
+      { id: 'jam1-q7', topic: 'Statistics', text: 'The sample variance of the data 2, 4, 6, using divisor n − 1, is', options: ['2', '4', '8/3', '8'], answer: 1, explanation: 'The mean is 4. The squared deviations are 4, 0, 4, which add up to 8. Divide by 2 to get 4.' },
+      { id: 'jam1-q8', topic: 'Statistics', text: 'In simple linear regression, if the correlation coefficient is −0.6, the coefficient of determination R² is', options: ['−0.36', '0.36', '0.6', '0.84'], answer: 1, explanation: 'R² is the square of the correlation coefficient, so (−0.6)² = 0.36.' },
+    ],
+  },
+
+  {
+    id: 'gate-st-demo-1',
+    exam: 'gate-st',
+    title: 'GATE Statistics (ST) Mock Test 1 (Demo)',
+    duration: 12,
+    marks: { correct: 1, wrong: 1 / 3 }, // a wrong 1-mark MCQ costs 1/3 mark
+    questions: [
+      { id: 'gst1-q1', topic: 'General Aptitude', text: 'A train covers 90 km in 1.5 hours. At the same speed, how far does it travel in 4 hours?', options: ['200 km', '220 km', '240 km', '260 km'], answer: 2, explanation: 'The speed is 90 / 1.5 = 60 km/h, so in 4 hours it covers 240 km.' },
+      { id: 'gst1-q2', topic: 'General Aptitude', text: 'Choose the word that best completes the sentence: The report was so ___ that nobody could find a single error in it.', options: ['flawless', 'careless', 'vague', 'hurried'], answer: 0, explanation: 'A report without errors is flawless.' },
+      { id: 'gst1-q3', topic: 'Probability', text: 'If X follows a Poisson distribution with mean 2, then P(X = 0) equals', options: ['e⁻²', '2e⁻²', '1 − e⁻²', 'e²'], answer: 0, explanation: 'P(X = 0) = e⁻² × 2⁰ / 0! = e⁻².' },
+      { id: 'gst1-q4', topic: 'Probability', text: 'X and Y are independent with Var(X) = 2 and Var(Y) = 3. Then Var(2X − Y) is', options: ['1', '5', '11', '13'], answer: 2, explanation: 'Var(2X − Y) = 4 × Var(X) + Var(Y) = 8 + 3 = 11.' },
+      { id: 'gst1-q5', topic: 'Statistics', text: 'For a sample from a normal population with known variance, the 95% confidence interval for the mean uses the', options: ['t-distribution', 'Chi-square distribution', 'Standard normal distribution', 'F-distribution'], answer: 2, explanation: 'With the variance known, the standardised sample mean follows the standard normal distribution.' },
+      { id: 'gst1-q6', topic: 'Statistics', text: 'For n Bernoulli(p) trials with s successes, the maximum likelihood estimator of p is', options: ['s / (n + 1)', 's / n', '(s + 1) / n', 'n / s'], answer: 1, explanation: 'Maximising the likelihood pˢ(1 − p)ⁿ⁻ˢ gives p = s / n.' },
+      { id: 'gst1-q7', topic: 'Linear Algebra', text: 'The eigenvalues of the matrix with rows (2, 0) and (0, 3) are', options: ['2 and 3', '0 and 5', '−2 and 3', '1 and 6'], answer: 0, explanation: 'For a diagonal matrix, the eigenvalues are the diagonal entries, 2 and 3.' },
+      { id: 'gst1-q8', topic: 'Calculus', text: 'The value of the integral of 2x from 0 to 3 is', options: ['3', '6', '9', '18'], answer: 2, explanation: 'The integral of 2x is x², and 3² − 0² = 9.' },
+    ],
+  },
+
+  {
+    id: 'gate-da-demo-1',
+    exam: 'gate-da',
+    title: 'GATE Data Science and AI (DA) Mock Test 1 (Demo)',
+    duration: 12,
+    marks: { correct: 1, wrong: 1 / 3 }, // a wrong 1-mark MCQ costs 1/3 mark
+    questions: [
+      { id: 'gda1-q1', topic: 'General Aptitude', text: 'If 20% of a number is 30, the number is', options: ['120', '150', '180', '200'], answer: 1, explanation: 'The number is 30 / 0.20 = 150.' },
+      { id: 'gda1-q2', topic: 'Probability and Statistics', text: 'A fair coin is tossed 4 times. The probability of exactly 2 heads is', options: ['1/4', '3/8', '1/2', '5/8'], answer: 1, explanation: 'There are C(4,2) = 6 favourable outcomes out of 2⁴ = 16, so the probability is 6/16 = 3/8.' },
+      { id: 'gda1-q3', topic: 'Probability and Statistics', text: 'The mean of the numbers 4, 8, 6, 10, 12 is', options: ['7', '8', '9', '10'], answer: 1, explanation: 'The total is 40, and 40 / 5 = 8.' },
+      { id: 'gda1-q4', topic: 'Linear Algebra', text: 'The rank of the matrix with rows (1, 2) and (2, 4) is', options: ['0', '1', '2', '4'], answer: 1, explanation: 'The second row is twice the first, so only one row is independent and the rank is 1.' },
+      { id: 'gda1-q5', topic: 'Machine Learning', text: 'Overfitting is best described as a model that', options: ['Performs poorly on both training and new data', 'Performs very well on training data but poorly on new data', 'Performs equally well on training and new data', 'Has too few parameters to learn the pattern'], answer: 1, explanation: 'An overfitted model memorises the training data and fails to generalise to new data.' },
+      { id: 'gda1-q6', topic: 'Machine Learning', text: 'Which of the following is an unsupervised learning method?', options: ['Linear regression', 'Logistic regression', 'K-means clustering', 'Decision tree classification'], answer: 2, explanation: 'K-means groups unlabelled data into clusters, while the other methods learn from labelled examples.' },
+      { id: 'gda1-q7', topic: 'Programming and Data Structures', text: 'Which data structure follows the first-in, first-out (FIFO) principle?', options: ['Stack', 'Queue', 'Binary tree', 'Hash table'], answer: 1, explanation: 'A queue removes the element that was added first.' },
+      { id: 'gda1-q8', topic: 'Databases', text: 'In SQL, which clause filters groups after aggregation?', options: ['WHERE', 'GROUP BY', 'HAVING', 'ORDER BY'], answer: 2, explanation: 'WHERE filters rows before grouping, and HAVING filters the groups after aggregation.' },
+    ],
+  },
 ]
