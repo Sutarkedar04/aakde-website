@@ -1,4 +1,3 @@
-import Badge from '../../../components/Badge'
 import { ScrollTrigger } from '../../../lib/gsap'
 import { DASH } from '../../../components/ui'
 
@@ -69,9 +68,9 @@ export default function ExamDetails({ exam, topics = [], children }) {
         <section>
           <h5 className={heading}>How to prepare</h5>
           <ol className={`border-t ${DASH}`}>
-            {steps.map((s, i) => (
+            {steps.map((s) => (
               <li key={s.title} className={`flex gap-4 border-b ${DASH} py-4`}>
-                <Badge n={i + 1} />
+                <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 bg-bright" />
                 <div>
                   <p className="font-medium">{s.title}</p>
                   <p className="mt-1 text-soft">{s.text}</p>

@@ -6,7 +6,6 @@ import { tests } from '../data/tests'
 import { exams } from '../data/exams'
 import { planFromQuestions } from '../lib/buildTest'
 import { ScrollTrigger } from '../../../lib/gsap'
-import Badge from '../../../components/Badge'
 import ExamDetails from './ExamDetails'
 import { DASH } from '../../../components/ui'
 
@@ -100,7 +99,7 @@ export default function MockTests() {
       </div>
 
       <ul className={`border-t ${DASH}`}>
-        {exams.map((e, i) => {
+        {exams.map((e) => {
           const list = tests.filter((t) => t.exam === e.id)
           const isOpen = openId === e.id
           return (
@@ -113,7 +112,7 @@ export default function MockTests() {
                   onClick={() => setOpenId(isOpen ? null : e.id)}
                   className="flex w-full items-center gap-4 py-5 text-left transition-colors hover:bg-main/3"
                 >
-                  <Badge n={i + 1} />
+                  <span aria-hidden="true" className="h-2 w-2 shrink-0 bg-bright" />
                   <span className="flex-1 text-lg font-medium">{e.name}</span>
                   <span className="hidden text-[11px] font-semibold uppercase tracking-[0.15em] text-soft sm:block">
                     {list.length ? `${list.length} test${list.length > 1 ? 's' : ''}` : 'Coming soon'}

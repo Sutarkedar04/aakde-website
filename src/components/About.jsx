@@ -26,7 +26,7 @@ export default function About() {
         </div>
 
         <div>
-          <SectionHead n="02" label="About AAKDE" title="Bringing intelligence to ideas, learning and action." mb="mb-8" />
+          <SectionHead label="About AAKDE" title="Bringing intelligence to ideas, learning and action." mb="mb-8" />
 
           <div ref={textRef} className="space-y-4 text-soft">
             <p>

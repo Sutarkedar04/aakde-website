@@ -20,10 +20,10 @@ export const servicesIntro =
   'Four distinct offerings, connected by one purpose: bringing the right knowledge, tools and capabilities to every requirement.'
 
 export const services = [
-  { slug: 'sarav', name: 'SARAV', word: 'सराव', icon: Target, title: 'Mock Test Platform', text: 'Prepare for competitive examinations through structured mock tests, practice assessments and performance evaluation in Statistics, Data Science, GATE and other relevant examinations.', cta: 'Explore the Platform' },
-  { slug: 'kaushalya', name: 'KAUSHALYA', word: 'कौशल्य', icon: ArrowUpRight, title: 'Analytics Training & Skill Development', text: 'Develop practical, industry-relevant skills through structured training in credit risk analytics, statistics, Python, machine learning and quantitative methods.', cta: 'Explore Training' },
-  { slug: 'paramarsh', name: 'PARAMARSH', word: 'परामर्श', icon: Activity, title: 'Project Consulting', text: 'Turn complex business challenges into practical solutions through statistical analysis, quantitative modelling, data science and technical expertise.', cta: 'Discuss a Project' },
-  { slug: 'sahyog', name: 'SAHYOG', word: 'सहयोग', icon: Plus, title: 'Project Support', text: 'Strengthen your projects with skilled professionals and technical resources aligned with your project scope, required competencies and delivery needs.', cta: 'Discuss Project Support' },
+  { slug: 'sarav', name: 'MOCK TEST PLATFORM', word: 'सराव', icon: Target, title: 'Mock Test Platform', text: 'Prepare for competitive examinations through structured mock tests, practice assessments and performance evaluation in Statistics, Data Science, GATE and other relevant examinations.', cta: 'Explore the Platform' },
+  { slug: 'kaushalya', name: 'SKILL DEVELOPMENT', word: 'कौशल्य', icon: ArrowUpRight, title: 'Analytics Training & Skill Development', text: 'Develop practical, industry-relevant skills through structured training in credit risk analytics, statistics, Python, machine learning and quantitative methods.', cta: 'Explore Training' },
+  { slug: 'paramarsh', name: 'PROJECT CONSULTING', word: 'परामर्श', icon: Activity, title: 'Project Consulting', text: 'Turn complex business challenges into practical solutions through statistical analysis, quantitative modelling, data science and technical expertise.', cta: 'Discuss a Project' },
+  { slug: 'sahyog', name: 'PROJECT SUPPORT', word: 'सहयोग', icon: Plus, title: 'Project Support', text: 'Strengthen your projects with skilled professionals and technical resources aligned with your project scope, required competencies and delivery needs.', cta: 'Discuss Project Support' },
 ]
 
 export const values = [

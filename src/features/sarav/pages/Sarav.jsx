@@ -6,7 +6,7 @@ export default function Sarav() {
   return (
     <ServiceLayout
       name="SARAV"
-      word="सराव"
+      word=" सराव "
       subtitle="Mock tests for statistics, data science and competitive exams"
       tagline="Practice with purpose. Perform with confidence."
       ctas={[

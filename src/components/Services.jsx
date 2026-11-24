@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { services, servicesIntro } from '../data'
 import SectionHead from './SectionHead'
-import Badge from './Badge'
 import { DASH } from './ui'
 
 /*
@@ -17,7 +16,7 @@ export default function Services() {
   return (
     <section id="services" data-theme="light" className="bg-paper-haze py-16 text-main lg:py-10">
       <div className="wrap">
-        <SectionHead n="04" label="Platforms & Services" title="Explore the AAKDE ecosystem." mb="mb-8">
+        <SectionHead label="Platforms & Services" title="Explore the AAKDE ecosystem." mb="mb-8">
           {servicesIntro}
         </SectionHead>
 
@@ -37,11 +36,20 @@ export default function Services() {
                 }`}
               >
                 <div className="flex items-center justify-between gap-3">
-                  <Badge n={i + 1} />
+                  {/* Moved the massive Devanagari word to the top row, replacing the number badge */}
+                  <span
+                    aria-hidden="true"
+                    data-speed="0.12"
+                    className={`pointer-events-none select-none font-dev text-[3rem] lg:text-[4rem] font-bold leading-none text-main/[0.07] will-change-transform transition-opacity duration-500 ${
+                      open ? '' : 'lg:opacity-0'
+                    }`}
+                  >
+                    {word}
+                  </span>
                   <Icon size={24} strokeWidth={1.6} aria-hidden="true" className="shrink-0 text-bright" />
                 </div>
 
-                {/* lg:pt-6 keeps a long title from touching the badge row in a narrow panel */}
+                {/* lg:pt-6 keeps a long title from touching the word row in a narrow panel */}
                 <div className="relative mt-8 lg:mt-auto lg:pt-6">
                   <h3 className="max-w-md text-xl font-semibold">{title}</h3>
                   {/* On large screens this part fades in when the panel opens. It keeps a fixed width so the text does not re-wrap while the panel grows. */}
@@ -53,17 +61,6 @@ export default function Services() {
                     </span>
                   </div>
                 </div>
-
-                {/* Big faint word. On large screens only the open panel shows it, because a narrow panel is too small to hold it */}
-                <span
-                  aria-hidden="true"
-                  data-speed="0.12"
-                  className={`pointer-events-none absolute -bottom-4 right-4 select-none font-dev text-[7rem] font-bold leading-none text-main/[0.07] will-change-transform transition-opacity duration-500 lg:text-[5.5rem] ${
-                    open ? '' : 'lg:opacity-0'
-                  }`}
-                >
-                  {word}
-                </span>
               </Link>
             )
           })}
