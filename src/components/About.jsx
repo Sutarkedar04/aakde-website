@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import SectionHead from './SectionHead'
 import useWordReveal from '../hooks/useWordReveal'
-import { DIGITS } from './ui'
 
 export default function About() {
   const sectionRef = useRef(null)
@@ -13,22 +12,15 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      data-theme="dark"
-      className="relative overflow-hidden bg-navy py-20 text-main lg:flex lg:min-h-[calc(100svh-72px)] lg:items-center lg:py-0"
+      data-theme="light"
+      className="relative overflow-hidden bg-paper py-20 text-main lg:flex lg:min-h-[calc(100svh-72px)] lg:items-center lg:py-0"
     >
-      <div
-        aria-hidden="true"
-        data-digits
-        className="pointer-events-none absolute inset-x-0 inset-y-[-15%] select-none overflow-hidden break-all font-mono text-[13px] leading-[1.35] tracking-[0.35em] text-white/6 will-change-transform mask-[radial-gradient(70%_70%_at_30%_50%,black,transparent)]"
-      >
-        {DIGITS}
-      </div>
-
       <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
+        {/* transform-none! keeps the word fixed in place: nothing can move it, whatever the scroll animation does */}
         <div
           aria-hidden="true"
           data-logo
-          className="bg-linear-to-br from-white to-accent bg-clip-text font-dev text-[clamp(6rem,16vw,12rem)] font-bold leading-[1.35] text-transparent will-change-transform"
+          className="transform-none! bg-linear-to-br from-accent to-highlight bg-clip-text font-dev text-[clamp(6rem,16vw,12rem)] font-bold leading-[1.35] text-transparent"
         >
           आकडे
         </div>

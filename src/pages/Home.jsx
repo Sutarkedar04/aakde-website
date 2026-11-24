@@ -17,10 +17,11 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        {/*<Blend className="h-16 md:h-24" from="var(--color-steel)" to="var(--color-night)" />*/}
-        <About />
         <Blend className="h-16 md:h-24" from="var(--color-steel)" to="var(--color-paper)" />
+        <About />
+        <Blend className="h-16 md:h-24" from="var(--color-paper)" to="var(--color-night)" />
         <Expertise />
+        <Blend className="h-16 md:h-24" from="var(--color-steel)" to="var(--color-paper)" />
         <Services />
         <Values />
         <Contact />
