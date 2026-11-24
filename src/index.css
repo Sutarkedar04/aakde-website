@@ -30,7 +30,7 @@
   --success: #1E8E5A;                 /* Success Green */
 }
 
-/* Theme-aware colours: these change with data-theme */
+
 @theme inline {
   --color-base: var(--base);
   --color-main: var(--main);
