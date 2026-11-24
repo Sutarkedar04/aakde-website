@@ -27,11 +27,6 @@ export default function Hero() {
           <h1 className="max-w-3xl animate-[rise_.8s_.1s_both] text-2xl font-semibold leading-[1.2] tracking-tight text-soft md:text-3xl">
             Intelligence for better decisions
           </h1>
-          
-          <div className="mt-10 flex animate-[rise_.8s_.3s_both] flex-wrap gap-3.5">
-            <a href="#services" className="btn btn-primary">Explore services</a>
-            <a href="#contact" className="btn btn-ghost">Get in Touch</a>
-          </div>
         </div>
 
         {/* The bottom text: uses a tight margin (mt-10) instead of being pushed by flex-1 */}
