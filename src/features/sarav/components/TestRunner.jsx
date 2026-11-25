@@ -15,6 +15,7 @@ export default function TestRunner({ test, onSubmit }) {
   const [cur, setCur] = useState(0)
   const [left, setLeft] = useState(Math.round(duration * 60))
   const [confirming, setConfirming] = useState(false)
+  const [notice, setNotice] = useState(null) // { text, ok } feedback for Save / Mark on the last question
 
   const responsesRef = useRef(responses) // the timer needs the latest answers when it submits
   responsesRef.current = responses
@@ -48,14 +49,30 @@ export default function TestRunner({ test, onSubmit }) {
 
   const q = questions[cur]
   const r = responses[q.id]
+  const isLast = cur === n - 1
   const patch = (id, p) => setResponses((all) => ({ ...all, [id]: { ...all[id], ...p } }))
   const go = (i) => {
     const j = Math.max(0, Math.min(n - 1, i))
     setCur(j)
+    setNotice(null)
     patch(questions[j].id, { visited: true })
   }
-  const saveNext = () => { patch(q.id, { marked: false }); go(cur + 1) }
-  const markNext = () => { patch(q.id, { marked: true }); go(cur + 1) }
+
+  // On the last question there is no next one, so say what happened instead of doing nothing
+  const saveNext = () => {
+    patch(q.id, { marked: false })
+    if (!isLast) return go(cur + 1)
+    setNotice(
+      r.answer == null
+        ? { text: 'No option is selected, so this question stays unanswered.', ok: false }
+        : { text: 'Answer saved. Press Submit test when you are done.', ok: true }
+    )
+  }
+  const markNext = () => {
+    patch(q.id, { marked: true })
+    if (!isLast) return go(cur + 1)
+    setNotice({ text: 'Marked for review. You can still change your answer before you submit.', ok: true })
+  }
 
   const counts = Object.values(responses).reduce(
     (c, x) => { c[statusOf(x)]++; return c },
@@ -86,7 +103,13 @@ export default function TestRunner({ test, onSubmit }) {
                       selected ? 'border border-solid border-primary bg-primary/5' : `border ${DASH} hover:bg-main/3`
                     }`}
                   >
-                    <input type="radio" name={q.id} checked={selected} onChange={() => patch(q.id, { answer: i })} className="mt-1.5 accent-primary" />
+                    <input
+                      type="radio"
+                      name={q.id}
+                      checked={selected}
+                      onChange={() => { patch(q.id, { answer: i }); setNotice(null) }}
+                      className="mt-1.5 accent-primary"
+                    />
                     <span><span className="mr-2 font-semibold text-soft">{String.fromCharCode(65 + i)}.</span>{opt}</span>
                   </label>
                 )
@@ -96,10 +119,14 @@ export default function TestRunner({ test, onSubmit }) {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <button type="button" className={ghostBtn} onClick={() => go(cur - 1)} disabled={cur === 0}>Previous</button>
-            <button type="button" className={ghostBtn} onClick={() => patch(q.id, { answer: null })} disabled={r.answer == null}>Clear response</button>
-            <button type="button" className={ghostBtn} onClick={markNext}>Mark for Review &amp; Next</button>
-            <button type="button" className="btn btn-primary" onClick={saveNext}>Save &amp; Next</button>
+            <button type="button" className={ghostBtn} onClick={() => { patch(q.id, { answer: null }); setNotice(null) }} disabled={r.answer == null}>Clear response</button>
+            <button type="button" className={ghostBtn} onClick={markNext}>{isLast ? 'Mark for Review' : <>Mark for Review &amp; Next</>}</button>
+            <button type="button" className="btn btn-primary" onClick={saveNext}>{isLast ? 'Save' : <>Save &amp; Next</>}</button>
           </div>
+
+          <p role="status" aria-live="polite" className={`mt-3 min-h-5 text-sm font-medium ${notice?.ok ? 'text-success' : 'text-soft'}`}>
+            {notice?.text}
+          </p>
         </div>
 
         {/* Palette */}

@@ -1,89 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
-import { getAttempts } from '../testsApi'
 import { tests } from '../data/tests'
 import { exams } from '../data/exams'
-import { planFromQuestions } from '../lib/buildTest'
 import { ScrollTrigger } from '../../../lib/gsap'
 import ExamDetails from './ExamDetails'
 import { DASH } from '../../../components/ui'
-
-function TestCard({ t, best }) {
-  const nav = useNavigate()
-  const total = t.questions.length
-  const [q, setQ] = useState(total)
-  const [m, setM] = useState(t.duration)
-
-  const normal = planFromQuestions(t, q).minutes // normal pace for this many questions
-  const start = () =>
-    nav(`/sarav/test/${t.id}?q=${q}&t=${m}&seed=${Date.now() % 1e9}`)
-
-  return (
-    <article data-reveal className={`flex flex-col border ${DASH} p-7`}>
-      <h4 className="font-display text-xl font-semibold text-accent">{t.title}</h4>
-      <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-soft">
-        <li>Full test: {total} questions</li>
-        <li>{t.duration} minutes</li>
-        <li>{t.marks.wrong > 0 ? 'Negative marking' : 'No negative marking'}</li>
-      </ul>
-      {best !== null && <p className="mt-4 text-sm font-medium">Best score: {best}%</p>}
-
-      <label className="mt-6 block text-sm font-medium">
-        <span className="flex justify-between">
-          <span>Number of questions</span>
-          <span className="text-soft">{q}</span>
-        </span>
-        <input
-          type="range"
-          className="mt-2 block w-full accent-accent"
-          min={1}
-          max={total}
-          value={q}
-          onChange={(e) => setQ(+e.target.value)}
-        />
-      </label>
-
-      <label className="mt-5 block text-sm font-medium">
-        <span className="flex justify-between">
-          <span>Time limit (minutes)</span>
-          <span className="text-soft">{m}</span>
-        </span>
-        <input
-          type="range"
-          className="mt-2 block w-full accent-accent"
-          min={1}
-          max={t.duration}
-          value={m}
-          onChange={(e) => setM(+e.target.value)}
-        />
-      </label>
-
-      <p aria-live="polite" className="mt-3 text-sm text-soft">
-        You will get <strong className="text-main">{q} questions</strong> in{' '}
-        <strong className="text-main">{m} minutes</strong>.
-        {m !== normal && (
-          <>
-            {' '}Normal pace is {normal} min.{' '}
-            <button type="button" onClick={() => setM(normal)} className="font-medium text-accent underline">
-              Use normal pace
-            </button>
-          </>
-        )}
-      </p>
-
-      <button type="button" onClick={start} className="btn btn-primary mt-6 self-start">
-        {best !== null ? 'Take it again' : 'Start test'}
-      </button>
-    </article>
-  )
-}
+import { canTakeDemo } from '../../../lib/access'
 
 export default function MockTests() {
-  const [attempts, setAttempts] = useState([])
-  useEffect(() => { getAttempts().then(setAttempts) }, [])
-
-  // Open the first exam that already has a test, so a demo is visible right away
+  // All exams start closed, so the whole list is visible
   const [openId, setOpenId] = useState(null)
 
   // Opening or closing a row changes the page height, so re-measure the scroll animations
@@ -94,52 +20,53 @@ export default function MockTests() {
       <div data-reveal className="mb-10 max-w-2xl">
         <h3 className="text-2xl font-semibold md:text-3xl">Examinations</h3>
         <p className="mt-3 text-soft">
-          Choose an examination to read about it and practise with a demo mock test.
+          Choose an examination to read about it, or start its demo test straight away.
         </p>
       </div>
 
       <ul className={`border-t ${DASH}`}>
         {exams.map((e) => {
-          const list = tests.filter((t) => t.exam === e.id)
+          const demo = tests.find((t) => t.exam === e.id) // the first test of the exam is its demo
           const isOpen = openId === e.id
+          const locked = demo && !canTakeDemo(e.id) // free demo already used: ask to sign in
           return (
             <li key={e.id} data-reveal className={`border-b ${DASH}`}>
-              <h4>
-                <button
-                  type="button"
-                  aria-expanded={isOpen}
-                  aria-controls={`exam-${e.id}`}
-                  onClick={() => setOpenId(isOpen ? null : e.id)}
-                  className="flex w-full items-center gap-4 py-5 text-left transition-colors hover:bg-main/3"
-                >
-                  <span aria-hidden="true" className="h-2 w-2 shrink-0 bg-bright" />
-                  <span className="flex-1 text-lg font-medium">{e.name}</span>
-                  <span className="hidden text-[11px] font-semibold uppercase tracking-[0.15em] text-soft sm:block">
-                    {list.length ? `${list.length} test${list.length > 1 ? 's' : ''}` : 'Coming soon'}
-                  </span>
-                  <ChevronDown
-                    size={20}
-                    aria-hidden="true"
-                    className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                  />
-                </button>
-              </h4>
+              <div className="flex items-center gap-3 md:gap-4">
+                <h4 className="min-w-0 flex-1">
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={`exam-${e.id}`}
+                    onClick={() => setOpenId(isOpen ? null : e.id)}
+                    className="flex w-full items-center gap-4 py-5 text-left transition-colors hover:bg-main/3"
+                  >
+                    <span aria-hidden="true" className="h-2 w-2 shrink-0 bg-bright" />
+                    <span className="flex-1 text-lg font-medium">{e.name}</span>
+                    <ChevronDown
+                      size={20}
+                      aria-hidden="true"
+                      className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                </h4>
+
+                {demo ? (
+                  <Link
+                    to={locked ? '/login' : `/sarav/test/${demo.id}`}
+                    state={locked ? { from: `/sarav/test/${demo.id}`, reason: 'demo-limit' } : undefined}
+                    aria-label={locked ? `Sign in to keep practising ${e.name}` : `Start the demo test for ${e.name}`}
+                    className="btn btn-primary shrink-0 px-4 py-2 text-sm"
+                  >
+                    {locked ? 'Sign in to continue' : 'Demo test'}
+                  </Link>
+                ) : (
+                  <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.15em] text-soft">Coming soon</span>
+                )}
+              </div>
 
               {isOpen && (
                 <div id={`exam-${e.id}`} className="pb-10 md:pl-14">
-                  <ExamDetails exam={e} topics={[...new Set(list.flatMap((t) => t.questions.map((q) => q.topic)))]}>
-                    {list.length > 0 && (
-                      <div className="grid gap-4 lg:grid-cols-2">
-                        {list.map((t) => {
-                          // Compare by percentage, because attempts can have different lengths
-                          const pct = (a) => Math.round((a.score / (a.maxScore || t.questions.length * t.marks.correct)) * 100)
-                          const mine = attempts.filter((a) => a.testId === t.id)
-                          const best = mine.length ? Math.max(...mine.map(pct)) : null
-                          return <TestCard key={t.id} t={t} best={best} />
-                        })}
-                      </div>
-                    )}
-                  </ExamDetails>
+                  <ExamDetails exam={e} />
                 </div>
               )}
             </li>

@@ -3,8 +3,8 @@ import { DASH } from '../../../components/ui'
 
 const heading = 'mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-soft'
 
-// Everything about one exam: overview, facts, pattern, guidance, FAQs and its demo tests (children).
-export default function ExamDetails({ exam, topics = [], children }) {
+// Everything about one exam: overview, facts, pattern, guidance and FAQs.
+export default function ExamDetails({ exam }) {
   const { text, facts, pattern, steps, faqs, note } = exam
 
   return (
@@ -80,20 +80,6 @@ export default function ExamDetails({ exam, topics = [], children }) {
           </ol>
         </section>
       )}
-
-      <section>
-        <h5 className={heading}>Demo mock tests</h5>
-        {children ? (
-          <>
-            {topics.length > 0 && (
-              <p className="mb-5 text-sm text-soft">Topics covered: {topics.join(', ')}.</p>
-            )}
-            {children}
-          </>
-        ) : (
-          <p className="text-soft">A demo test for this examination is coming soon.</p>
-        )}
-      </section>
 
       {faqs && (
         <section>

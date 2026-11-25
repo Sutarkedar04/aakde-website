@@ -37,7 +37,7 @@ export const tests = [
     id: 'acet-demo-1',
     exam: 'acet',
     title: 'ACET Mock Test 1 (Demo)',
-    duration: 12, // minutes
+    duration: 20, // minutes
     marks: { correct: 1, wrong: 0 }, // ACET has no negative marking
     questions: [
       { id: 'acet1-q1', topic: 'Mathematics', text: 'The sum of the first 20 natural numbers is', options: ['190', '200', '210', '220'], answer: 2, explanation: 'The sum of the first n natural numbers is n(n + 1)/2, so 20 × 21 / 2 = 210.' },
@@ -55,7 +55,7 @@ export const tests = [
     id: 'mba-demo-1',
     exam: 'mba',
     title: 'MBA Entrance (CAT-style) Mock Test 1 (Demo)',
-    duration: 14,
+    duration: 20,
     marks: { correct: 3, wrong: 1 }, // CAT marks multiple-choice questions +3 and -1
     questions: [
       { id: 'mba1-q1', topic: 'Quantitative Aptitude', text: 'A train 150 m long passes a pole in 10 seconds. Its speed in km/h is', options: ['45', '54', '60', '72'], answer: 1, explanation: 'Speed = 150 / 10 = 15 m/s. Multiply by 3.6 to get 54 km/h.' },
@@ -73,7 +73,7 @@ export const tests = [
     id: 'set-demo-1',
     exam: 'set',
     title: 'MH-SET Paper I Mock Test 1 (Demo)',
-    duration: 10,
+    duration: 20,
     marks: { correct: 2, wrong: 0 }, // MH-SET carries 2 marks per question, no negative marking
     questions: [
       { id: 'set1-q1', topic: 'Teaching Aptitude', text: 'Which of the following is a formative evaluation activity?', options: ['Final board examination', 'Class quiz during a unit', 'Annual result declaration', 'Entrance test'], answer: 1, explanation: 'Formative evaluation takes place during learning, to guide teaching. A class quiz during a unit is an example.' },
@@ -91,7 +91,7 @@ export const tests = [
     id: 'net-demo-1',
     exam: 'net',
     title: 'UGC NET Paper 1 Mock Test 1 (Demo)',
-    duration: 10,
+    duration: 20,
     marks: { correct: 2, wrong: 0 }, // UGC NET carries 2 marks per question, no negative marking
     questions: [
       { id: 'net1-q1', topic: 'Teaching Aptitude', text: 'A teacher who invites questions and builds lessons around learners’ own examples is mainly following which approach?', options: ['Teacher-centred', 'Learner-centred', 'Exam-centred', 'Textbook-only'], answer: 1, explanation: 'Building lessons around learners’ questions and examples is a learner-centred approach.' },
@@ -109,7 +109,7 @@ export const tests = [
     id: 'jam-demo-1',
     exam: 'jam',
     title: 'IIT JAM Mathematical Statistics Mock Test 1 (Demo)',
-    duration: 12,
+    duration: 20,
     marks: { correct: 1, wrong: 1 / 3 }, // a wrong 1-mark MCQ costs 1/3 mark
     questions: [
       { id: 'jam1-q1', topic: 'Mathematics', text: 'The value of the limit of (eˣ − 1) / x as x approaches 0 is', options: ['0', '1', 'e', '∞'], answer: 1, explanation: 'This is the derivative of eˣ at x = 0, which is e⁰ = 1.' },
@@ -127,7 +127,7 @@ export const tests = [
     id: 'gate-st-demo-1',
     exam: 'gate-st',
     title: 'GATE Statistics (ST) Mock Test 1 (Demo)',
-    duration: 12,
+    duration: 20,
     marks: { correct: 1, wrong: 1 / 3 }, // a wrong 1-mark MCQ costs 1/3 mark
     questions: [
       { id: 'gst1-q1', topic: 'General Aptitude', text: 'A train covers 90 km in 1.5 hours. At the same speed, how far does it travel in 4 hours?', options: ['200 km', '220 km', '240 km', '260 km'], answer: 2, explanation: 'The speed is 90 / 1.5 = 60 km/h, so in 4 hours it covers 240 km.' },
@@ -145,7 +145,7 @@ export const tests = [
     id: 'gate-da-demo-1',
     exam: 'gate-da',
     title: 'GATE Data Science and AI (DA) Mock Test 1 (Demo)',
-    duration: 12,
+    duration: 20,
     marks: { correct: 1, wrong: 1 / 3 }, // a wrong 1-mark MCQ costs 1/3 mark
     questions: [
       { id: 'gda1-q1', topic: 'General Aptitude', text: 'If 20% of a number is 30, the number is', options: ['120', '150', '180', '200'], answer: 1, explanation: 'The number is 30 / 0.20 = 150.' },

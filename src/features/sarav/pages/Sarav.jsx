@@ -20,7 +20,7 @@ export default function Sarav() {
         title="How SARAV works"
         items={[
           { title: 'Choose an exam', text: 'Open an exam to read its pattern and how to prepare.' },
-          { title: 'Set up your test', text: 'Pick the number of questions and the time limit that suit you.' },
+          { title: 'Take the demo test', text: 'Start a timed 20-minute demo with a question palette.' },
           { title: 'Review your result', text: 'See your score and an answer key with explanations.' },
         ]}
       />

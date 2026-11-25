@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import Instructions from '../components/Instructions'
 import TestRunner from '../components/TestRunner'
 import Result from '../components/Result'
 import { scoreTest } from '../lib/scoring'
 import { buildTest, configFromParams } from '../lib/buildTest'
 import { getTest, saveAttempt } from '../testsApi'
+import { canTakeDemo, isLoggedIn, markFreeDemoUsed } from '../../../lib/access'
 import logo from '../../../assets/aakde_logo.png'
 
 /* One page, three steps: instructions -> test -> result */
@@ -13,6 +14,7 @@ export default function TestPage() {
   const { id } = useParams()
   const [sp] = useSearchParams()
   const navigate = useNavigate()
+  const location = useLocation()
 
   // undefined = still loading, null = not found
   const [base, setBase] = useState(undefined)
@@ -50,6 +52,12 @@ export default function TestPage() {
     )
   }
 
+  // A guest gets one free demo per exam. Any later attempt goes to sign in.
+  // Only checked on the instructions step, so a test in progress or its result is never interrupted.
+  if (step === 'instructions' && !canTakeDemo(test.exam)) {
+    return <Navigate to="/login" replace state={{ from: location.pathname, reason: 'demo-limit' }} />
+  }
+
   const submit = async (responses, timeTaken) => {
     const result = scoreTest(test, responses)
     await saveAttempt({ testId: test.id, score: result.score, maxScore: result.maxScore, timeTaken, date: new Date().toISOString() })
@@ -60,7 +68,11 @@ export default function TestPage() {
   const exit = () => {
     if (window.confirm('Leave the test? Your answers will be lost.')) navigate('/services/sarav')
   }
-  const start = () => { setStep('running'); window.scrollTo({ top: 0 }) }
+  const start = () => {
+    if (!isLoggedIn()) markFreeDemoUsed(test.exam) // the free chance is used when the test begins
+    setStep('running')
+    window.scrollTo({ top: 0 })
+  }
   const retake = () => { setOutcome(null); setRound((r) => r + 1); setStep('instructions'); window.scrollTo({ top: 0 }) }
 
   return (
