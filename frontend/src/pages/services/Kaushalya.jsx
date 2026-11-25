@@ -4,8 +4,8 @@ import { CardsBlock, Feature } from '../../components/service/ServiceBlocks'
 export default function Kaushalya() {
   return (
     <ServiceLayout
-      name="KAUSHALYA"
-      word="कौशल्य"
+      name="Skill Development"
+      word=" कौशल्य "
       subtitle="Analytics Training & Skill Development"
       tagline="Build industry-ready capabilities in analytics, risk, and data science."
       aboutHeading="About KAUSHALYA"

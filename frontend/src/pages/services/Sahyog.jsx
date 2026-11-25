@@ -6,7 +6,7 @@ export default function Sahyog() {
   return (
     <ServiceLayout
       name="SAHYOG"
-      word="सहयोग"
+      word=" सहयोग "
       subtitle="Project Support & Talent Solutions"
       tagline="Skilled analytics professionals for research, modeling, and implementation."
       aboutHeading="About SAHYOG"

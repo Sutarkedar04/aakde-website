@@ -4,7 +4,7 @@ import { CardsBlock, ListBlock } from '../../components/service/ServiceBlocks'
 export default function Paramarsh() {
   return (
     <ServiceLayout
-      name="PARAMARSH"
+      name=" PARAMARSH "
       word="परामर्श"
       subtitle="Analytics Consulting Services"
       tagline="Quantitative solutions for complex business problems."
