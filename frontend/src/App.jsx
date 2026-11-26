@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
@@ -9,9 +10,19 @@ import TestPage from './features/sarav/pages/TestPage'
 import Kaushalya from './pages/services/Kaushalya'
 import Paramarsh from './pages/services/Paramarsh'
 import Sahyog from './pages/services/Sahyog'
-
+import { api } from './lib/api'
+import { signIn, signOut } from './lib/access'
+import Profile from './pages/Profile' // adjust: the file that exports signIn / signOut
 
 export default function App() {
+  // On page load, ask the server who is signed in, so the browser never
+  // thinks you are logged in after the session cookie has expired.
+  useEffect(() => {
+    api('/auth/me')
+      .then(({ user }) => (user ? signIn(user) : signOut()))
+      .catch(() => {}) // server unreachable: leave things as they are
+  }, [])
+
   return (
     <>
       <ScrollToTop />
@@ -19,6 +30,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/services/sarav" element={<Sarav />} />
         <Route path="/services/kaushalya" element={<Kaushalya />} />

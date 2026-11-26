@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AuthLayout from '../components/AuthLayout'
 import Field from '../components/Field'
 import useForm from '../hooks/useForm'
+import { api } from '../lib/api'
+import { signIn } from '../lib/access' // the file that holds signIn / isLoggedIn
 
 const empty = { email: '', password: '' }
 
@@ -13,7 +15,16 @@ function validate(f) {
 }
 
 export default function Login() {
-  const { submit, props, sent } = useForm(empty, validate, (f) => console.log('Login (connect an API here):', { email: f.email }))
+  const navigate = useNavigate()
+
+  const { submit, props, loading, formError } = useForm(empty, validate, async (f) => {
+    const { user } = await api('/auth/login', {
+      method: 'POST',
+      body: { email: f.email, password: f.password },
+    })
+    signIn(user)
+    navigate('/')
+  })
 
   return (
     <AuthLayout
@@ -24,8 +35,10 @@ export default function Login() {
       <form onSubmit={submit} noValidate className="grid gap-5">
         <Field label="Email" type="email" autoComplete="email" {...props('email')} />
         <Field label="Password" type="password" autoComplete="current-password" {...props('password')} />
-        <button type="submit" className="btn btn-primary">Log in</button>
-        {sent && <p role="status" className="font-medium text-success">Logged in. (Connect an API to make this real.)</p>}
+        {formError && <p role="alert" className="font-medium text-red-600">{formError}</p>}
+        <button type="submit" className="btn btn-primary" disabled={loading}>
+          {loading ? 'Logging in…' : 'Log in'}
+        </button>
       </form>
     </AuthLayout>
   )

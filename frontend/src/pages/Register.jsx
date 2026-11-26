@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AuthLayout from '../components/AuthLayout'
 import Field from '../components/Field'
 import useForm from '../hooks/useForm'
+import { api } from '../lib/api'
+import { signIn } from '../lib/access' // the file that holds signIn / isLoggedIn
 
 const empty = { name: '', email: '', password: '', confirm: '' }
 
@@ -15,7 +17,16 @@ function validate(f) {
 }
 
 export default function Register() {
-  const { submit, props, sent } = useForm(empty, validate, (f) => console.log('Register (connect an API here):', { name: f.name, email: f.email }))
+  const navigate = useNavigate()
+
+  const { submit, props, loading, formError } = useForm(empty, validate, async (f) => {
+    const { user } = await api('/auth/register', {
+      method: 'POST',
+      body: { name: f.name, email: f.email, password: f.password },
+    })
+    signIn(user)
+    navigate('/')
+  })
 
   return (
     <AuthLayout
@@ -28,8 +39,10 @@ export default function Register() {
         <Field label="Email" type="email" autoComplete="email" {...props('email')} />
         <Field label="Password" type="password" autoComplete="new-password" {...props('password')} />
         <Field label="Confirm password" type="password" autoComplete="new-password" {...props('confirm')} />
-        <button type="submit" className="btn btn-primary">Create account</button>
-        {sent && <p role="status" className="font-medium text-success">Account created. (Connect an API to make this real.)</p>}
+        {formError && <p role="alert" className="font-medium text-red-600">{formError}</p>}
+        <button type="submit" className="btn btn-primary" disabled={loading}>
+          {loading ? 'Creating account…' : 'Create account'}
+        </button>
       </form>
     </AuthLayout>
   )

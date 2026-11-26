@@ -4,6 +4,7 @@ import { ChevronDown, Menu, X } from 'lucide-react'
 import { navLinks, services } from '../data'
 import useDock from '../hooks/useDock'
 import logo from '../assets/aakde_logo.png'
+import AccountMenu from './AccountMenu'
 
 function useActiveSection(ids) {
   const [active, setActive] = useState(ids[0])
@@ -95,15 +96,15 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-base/85 backdrop-blur-md">
-      <div className="wrap flex h-18 items-center justify-between gap-6">
-        <a href="/#home" aria-label="AAKDE home" className="shrink-0">
+      <div className="wrap flex h-18 items-center justify-between gap-6 md:grid md:grid-cols-[1fr_auto_1fr]">
+        <a href="/#home" aria-label="AAKDE home" className="shrink-0 md:justify-self-start">
           <img src={logo} alt="AAKDE" className="h-10 w-auto" />
         </a>
 
         <nav
           ref={navRef}
           aria-label="Main"
-          className={`${open ? 'flex' : 'hidden'} absolute left-0 right-0 top-18 flex-col border-b border-line bg-base px-6 pb-5 md:relative md:inset-auto md:flex md:flex-row md:gap-7 md:border-0 md:bg-transparent md:p-0`}
+          className={`${open ? 'flex' : 'hidden'} absolute left-0 right-0 top-18 flex-col border-b border-line bg-base px-6 pb-5 md:relative md:inset-auto md:flex md:flex-row md:gap-7 md:justify-self-center md:border-0 md:bg-transparent md:p-0`}
         >
           {navLinks.map((l) => {
             if (l.id === 'services') {
@@ -136,9 +137,17 @@ export default function Navbar() {
           })}
         </nav>
 
-        <button className="text-main md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-3 md:justify-self-end">
+          <AccountMenu />
+          <button
+            className="text-main md:hidden"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
     </header>
   )
