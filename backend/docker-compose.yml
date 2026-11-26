@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: aakde-db
+    environment:
+      POSTGRES_USER: aakde
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: aakde
+    ports:
+      - "5433:5432"
+    volumes:
+      - aakde-db-data:/var/lib/postgresql/data
+
+volumes:
+  aakde-db-data:

@@ -5,3 +5,7 @@ dist
 .vercel
 .env*
 .vercel
+# Environment variables
+.env
+.env.*
+!.env.example
