@@ -11,7 +11,7 @@ import Kaushalya from './pages/services/Kaushalya'
 import Paramarsh from './pages/services/Paramarsh'
 import Sahyog from './pages/services/Sahyog'
 import { api } from './lib/api'
-import { signIn, signOut } from './lib/access'
+import { signIn, signOut, markAuthReady } from './lib/access'
 import Profile from './pages/Profile' // adjust: the file that exports signIn / signOut
 
 export default function App() {
@@ -20,7 +20,8 @@ export default function App() {
   useEffect(() => {
     api('/auth/me')
       .then(({ user }) => (user ? signIn(user) : signOut()))
-      .catch(() => {}) // server unreachable: leave things as they are
+      .catch(() => {}) 
+      .finally(markAuthReady)
   }, [])
 
   return (

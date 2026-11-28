@@ -1,13 +1,14 @@
 import { useMemo, useSyncExternalStore } from 'react'
 import { api } from '../lib/api'
-import { getUserRaw, subscribeAuth, signOut } from '../lib/access' // same file as in Login.jsx
+import { getUserRaw, isAuthReady, subscribeAuth, signOut } from '../lib/access'
 
 export default function useAuth() {
   const raw = useSyncExternalStore(subscribeAuth, getUserRaw, () => null)
+  const ready = useSyncExternalStore(subscribeAuth, isAuthReady, () => false)
 
   const user = useMemo(() => {
     try {
-      return JSON.parse(raw)
+      return raw ? JSON.parse(raw) : null
     } catch {
       return null
     }
@@ -22,5 +23,5 @@ export default function useAuth() {
     signOut()
   }
 
-  return { user, isLoggedIn: Boolean(raw), logout }
+  return { user, isLoggedIn: Boolean(raw), ready, logout }
 }

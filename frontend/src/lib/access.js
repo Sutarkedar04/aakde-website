@@ -13,6 +13,11 @@ const read = (key, fallback) => {
 // Tells React components that the signed-in user changed
 const notify = () => window.dispatchEvent(new Event(EVENT))
 
+// True once the first "who am I?" answer from the server has arrived
+let ready = false
+export const isAuthReady = () => ready
+export const markAuthReady = () => { ready = true; notify() }
+
 export const isLoggedIn = () => !!read(USER, null)
 export const signIn = (user = {}) => {
   localStorage.setItem(USER, JSON.stringify(user))

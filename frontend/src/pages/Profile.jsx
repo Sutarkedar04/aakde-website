@@ -3,9 +3,10 @@ import AuthLayout from '../components/AuthLayout'
 import useAuth from '../hooks/useAuth'
 
 export default function Profile() {
-  const { user, isLoggedIn, logout } = useAuth()
+  const { user, isLoggedIn, ready, logout } = useAuth()
   const navigate = useNavigate()
 
+  if (!ready) return null
   if (!isLoggedIn) return <Navigate to="/login" replace />
 
   const handleLogout = async () => {
