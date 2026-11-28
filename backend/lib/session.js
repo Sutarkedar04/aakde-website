@@ -8,13 +8,16 @@ const sha256 = (text) => createHash('sha256').update(text).digest('hex')
 
 export const COOKIE = 'aakde_session'
 
-export const cookieOptions = () => ({
-  httpOnly: true, // JavaScript on the page cannot read it
-  sameSite: 'lax',
-  secure: process.env.NODE_ENV === 'production', // HTTPS only on the live site
-  path: '/',
-  maxAge: DAYS * 24 * 60 * 60 * 1000,
-})
+export const cookieOptions = () => {
+  const isProd = process.env.NODE_ENV === 'production'
+  return {
+    httpOnly: true, // JavaScript on the page cannot read it
+    sameSite: isProd ? 'none' : 'lax',
+    secure: isProd, // HTTPS only on the live site (required when sameSite is 'none')
+    path: '/',
+    maxAge: DAYS * 24 * 60 * 60 * 1000,
+  }
+}
 
 // The browser gets a random token. The database only keeps its hash, so a leaked database cannot be used to sign in.
 export async function createSession(userId, userAgent) {
